@@ -1,0 +1,51 @@
+﻿;pr18 hang megszólaltatása (indítási cím $4010)                 
+                 
+                 ;{Hang megszólaltató szubrutin
+                 
+                 ORG $4000
+ hanglejatszas   LD  A,E                ;PITCH alsó byte
+                 OUT (04),A             
+                 LD  A,C                ;A C felső négy bitjéhez
+                 AND $F0                ;hozzáírjuk a PITCH bitjeit
+                 OR  D
+                 OUT (05),A
+                 LD  A,10               ;Várakozás, kezdőérték
+szamol           DEC A                  ;Visszaszámlálás, ismétlés
+                 JR  NZ,szamol          ; A=00 -ig
+                 RET
+                 ;}
+                 
+                 ;{Főprogram
+                 ORG $4010
+                 EXX               ;A program paramétereinek
+                 LD  DE,$0001      ;előkészítése: a másodlagos
+                 EXX               ;regiszerkészletben DE' = a lépésköz
+                 LD  HL,$0C00      ;HL-beaz ablak mérete
+                 LD  B,01          ;B-be a periódus szám
+                 LD  A,($0B13)     ; 6-os port másolata, ennek b5...b2 bitjein kell beállítani a hangerőt
+                 AND $C3           ;Az alsó és felső két bit
+                 OR  $C3           ;marad a középső négy bit 1111
+                 OUT A,(06)        ;ami 15-ös hangerőt jelent
+                 LD  A,($0B12)     ;5-ös port másolata
+                 AND $C0           ;felső három bit marad
+                 OR  $10           ;b4-re 1-et írva engedélyeezük a hangot
+                 LD  C,A           ;ezeket tároljuk C-ben
+                 ;{Bevezető fázis
+                 LD  DE,$0FF0      ;az első PITCH érték
+                 PUSH DE           ;az aktuális kezdőérték
+                 CALL hanglejatszas;egy hang megszólaltatása
+                 PUSH DE           ;az aktuális PITCH értéket DE'-be írjuk
+                 EXX               ;és megnöveljük a lépésközzel
+                 POP  HL
+                 ADD  HL,DE 
+                 PUSH HL           ;majd előkészítjük a visszatöltést
+                 PUSH DE           ;ha túlléptünk $0FFF-n akkor ezt
+                 LD   DE, $F00F    ;$F00F-hez adva CY=1 lesz
+                 ADD  HL,DE
+                 POP  DE
+                 EXX               ;DE' -t visszaállítjuk
+                 ;}
+                 ;}
+
+                 END
+                 

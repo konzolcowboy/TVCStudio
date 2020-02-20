@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SyntaxDefinition name="TVCAssembly" extensions=".tvcasm" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Green"/>
+	<Color name="String" foreground="Magenta"/>
+	<Color name="Char" foreground="Magenta"/>
+	<Color name="ProcessorInstructions" foreground="Teal" fontWeight="bold"/>
+  <Color name="Registers" foreground="Teal" fontWeight="bold"/>
+	<Color name="AssemblerInstructions" foreground="Olive" fontWeight="bold"/>
+  <Color name="PreprocessorInstructions" foreground="Red" fontWeight="bold"/>
+  <Color name="Expressions" foreground="Blue"/>
+
+  <!-- This is the main ruleset. -->
+	<RuleSet ignoreCase="true">
+		<Span color="Comment" begin=";" multiline="false" />
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+		</Span>
+		<Span color="Char">
+			<Begin>'</Begin>
+			<End>'</End>
+		</Span>
+		<Keywords color="ProcessorInstructions">
+			<Word>LD</Word>
+			<Word>LDIR</Word>
+			<Word>LDDR</Word>
+			<Word>LDI</Word>
+			<Word>LDD</Word>
+			<Word>ADC</Word>
+			<Word>ADD</Word>
+			<Word>SBC</Word>
+			<Word>SUB</Word>
+			<Word>INC</Word>
+			<Word>DEC</Word>
+			<Word>AND</Word>
+			<Word>OR</Word>
+			<Word>XOR</Word>
+			<Word>NEG</Word>
+			<Word>CPL</Word>
+			<Word>CP</Word>
+			<Word>CPD</Word>
+			<Word>CPI</Word>
+			<Word>CPDR</Word>
+			<Word>CPIR</Word>
+			<Word>DAA</Word>
+			<Word>BIT</Word>
+			<Word>SET</Word>
+			<Word>RES</Word>
+			<Word>SLA</Word>
+			<Word>SRA</Word>
+			<Word>SRL</Word>
+		  <Word>SLL</Word>
+			<Word>RL</Word>
+			<Word>RLC</Word>
+			<Word>RR</Word>
+			<Word>RRC</Word>
+			<Word>RLA</Word>
+			<Word>RLCA</Word>
+			<Word>RRA</Word>
+			<Word>RRCA</Word>
+			<Word>RLD</Word>
+			<Word>RRD</Word>
+			<Word>CCF</Word>
+			<Word>SCF</Word>
+			<Word>IN</Word>
+			<Word>OUT</Word>
+			<Word>IND</Word>
+			<Word>INDR</Word>
+			<Word>INI</Word>
+			<Word>INIR</Word>
+			<Word>OUTD</Word>
+			<Word>OTDR</Word>
+			<Word>OUTI</Word>
+			<Word>OTIR</Word>
+			<Word>CALL</Word>
+			<Word>RST</Word>
+			<Word>RET</Word>
+			<Word>RETI</Word>
+			<Word>RETN</Word>
+			<Word>PUSH</Word>
+			<Word>POP</Word>
+			<Word>EX</Word>
+			<Word>EXX</Word>
+			<Word>IM</Word>
+			<Word>DI</Word>
+			<Word>EI</Word>
+			<Word>HALT</Word>
+			<Word>NOP</Word>
+			<Word>JR</Word>
+			<Word>DJNZ</Word>
+			<Word>JP</Word>
+		</Keywords>
+		<Keywords color="AssemblerInstructions">
+			<Word>ORG</Word>
+			<Word>END</Word>
+			<Word>DS</Word>
+			<Word>DW</Word>
+			<Word>DB</Word>
+			<Word>EQU</Word>
+		  <Word>INCBIN</Word>
+		</Keywords>
+    <Rule color="Expressions">\${1}[0-9A-F]{1,4}</Rule>
+	  <Rule color="Expressions">\b(?=\w)[0-9]{1,5}\b(?&lt;=\w)</Rule>
+	  <Rule color="PreprocessorInstructions">[#]{1}.*</Rule>
+	  <Rule color="Expressions">[-+\/*&lt;&gt;&amp;|~^]|sqrt\({1}|abs\({1}|high\({1}|low\({1}</Rule>
+	  <Rule color="Registers">\b(?=\w)A\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)F\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)B\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)C\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)D\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)E\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)H\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)L\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)A'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)F'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)B'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)C'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)D'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)E'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)H'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)L'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)IX\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)IXH\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)IXL\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)IY\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)IYH\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)IYL\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)SP\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)I\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)R\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)PC\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)AF\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)AF'\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)BC\b(?&lt;=\w)</Rule>
+    <Rule color="Registers">\b(?=\w)DE\b(?&lt;=\w)</Rule>
+	  <Rule color="Registers">\b(?=\w)HL\b(?&lt;=\w)</Rule>
+	</RuleSet>
+</SyntaxDefinition>

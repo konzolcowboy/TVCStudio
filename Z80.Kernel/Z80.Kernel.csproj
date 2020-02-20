@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AC1CC3B-D29A-48B1-AF25-9CCE3EB03C05}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Z80.Kernel</RootNamespace>
+    <AssemblyName>Z80.Kernel</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Preprocessor\ConditionalGroupPreprocessor.cs" />
+    <Compile Include="Preprocessor\PreprocessorConstans.cs" />
+    <Compile Include="Preprocessor\DefinePreprocessor.cs" />
+    <Compile Include="Preprocessor\IncludePreprocessor.cs" />
+    <Compile Include="Preprocessor\MacroPreprocessor.cs" />
+    <Compile Include="Preprocessor\PreprocessorRowTokenizer.cs" />
+    <Compile Include="Preprocessor\Z80Preprocessor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RowTokenizer.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\AssemblerInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\AssemblerConstans.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\DbInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\DsInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\DwInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\EquInstructionParser.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\IncBinInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\AssemblerInstructions\OrgInstructionParser.cs" />
+    <Compile Include="Z80Assembler\AssemblyRowInterpreter.cs" />
+    <Compile Include="Z80Assembler\AssemblyRowTokenizer.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Abs.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\And.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Divide.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\ExpressionConstans.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\High.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\LeftParent.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\LeftShift.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Low.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Minus.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Multiply.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\OnesComplement.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Or.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Plus.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\RightParent.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\RightShift.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Sqrt.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Xor.cs" />
+    <Compile Include="Z80Assembler\Helper.cs" />
+    <Compile Include="Z80Assembler\Operand.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\ExpressionParser.cs" />
+    <Compile Include="Z80Assembler\ExpressionHandling\Operator.cs" />
+    <Compile Include="Z80Assembler\OperandResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\AdcInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\AddInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\ArithmeticalInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\ArithmeticalInstructionResolverBase.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\DecInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\IncInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\SbcInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ArithmeticalInstructions\SubInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitInstructions\BitInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitInstructions\BitInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitInstructions\BitInstructionResolverBase.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitInstructions\ResInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitInstructions\SetInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitRotationInstructions\BitRotationInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitRotationInstructions\BitRotationInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitshiftingInstructions\BitShiftingInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\BitshiftingInstructions\BitShiftingInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\CompareInstructions\CompareInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\CompareInstructions\CpInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\ExchangeInstructions\ExchangeInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\JumpInstructions\JumpInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\JumpInstructions\RelativeJumpInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LoadingInstructions\LoadingInstructionConstantIntoIndexRegisters.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LogicalInstructions\AndInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LogicalInstructions\LogicalInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LogicalInstructions\OrInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LogicalInstructions\XorInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\OtherInstructions\OtherInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\PortInstructions\InInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\PortInstructions\OutInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\PortInstructions\PortInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\StackInstructions\StackInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\SubRoutineInstructions\CallInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\SubRoutineInstructions\RetInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\SubRoutineInstructions\RstInstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\SubRoutineInstructions\SubRoutineInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\Z80InstructionResolver.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LoadingInstructions\LoadingInstructionWithOneByteConstant.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LoadingInstructions\LoadingInstructionWithIndexRegisters.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LoadingInstructions\LoadingInstructionWithTwoBytePointer.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LoadingInstructions\LoadingInstructionSingleRegister.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\Z80InstructionBuilderFactory.cs" />
+    <Compile Include="Z80Assembler\AssemblyRow.cs" />
+    <Compile Include="Z80Assembler\Z80Assembler.cs" />
+    <Compile Include="Z80Assembler\Z80AssemblerException.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\IZ80InstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Instructions\LoadingInstructions\LoadingInstructionBuilder.cs" />
+    <Compile Include="Z80Assembler\Z80Program.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

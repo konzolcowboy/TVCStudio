@@ -1,0 +1,50 @@
+﻿;PR14 16 színű oszlopok rajzolásaa képernyőre (indítási cím $3010)
+             
+            ORG $3000
+            
+             ; Szubrutin a videó RAM bekapcsolására
+VIDON       LD  A,$50 ;Videó RAM belapozása a második lapra
+            LD  ($3),A
+            OUT ($2),A
+            RET
+
+             ; Szubrutin a videó RAM kikapcsolására
+VIDOFF      LD A,$70 ;Bekapcsoláskori memória konfiguráció visszaállítása
+            LD ($3),A
+            OUT ($2),A
+            RET
+
+            ORG    .LC       ;Az aktuális utasítás címtől folytatjuk
+            LD     A,($0B13)
+            PUSH   AF
+            AND    $FC
+            OR     $02
+            OUT    ($6),A    ;16-os videó mód bekapcsolása
+            CALL   VIDON
+            RST    $30
+            DB     $5         ;Képernyő törlése
+            LD     B,$F0     ; Egy TV sorban F0 byte van
+            LD     DE,$801C  ; Első sor közepének címe
+            LD     HL,CKOD
+S1          PUSH   HL
+            PUSH   DE
+            PUSH   BC        ;Ciklus változó tárolása
+            LD     BC,$08    ;Ciklus változó A színbyte-ok hossza
+            LDIR
+            POP    BC
+            POP    HL
+            LD     DE,$40   ;Sorhossz
+            ADD    HL,DE    ;Következő sor címe
+            EX     DE,HL
+            POP    HL
+            DJNZ   S1
+            CALL VIDOFF ;U0-U1-U2-SYS lapozás visszaállítása
+            RST  $30
+            DB   $91     ;Várakozás billentyű lenyomásra
+            POP  AF
+            OUT  ($6),A   ;Korábbi videó mód visszaállítása
+            RET
+CKOD        DB   $01,$0D,$31,$3D,$C1,$CD,$F1,$FD
+            
+
+            

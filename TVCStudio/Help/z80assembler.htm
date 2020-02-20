@@ -1,0 +1,808 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1250">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#954F72;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-bottom:5.95pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	margin-right:0cm;
+	margin-bottom:5.95pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msotitlecxspfirst, li.msotitlecxspfirst, div.msotitlecxspfirst
+	{mso-style-name:msotitlecxspfirst;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msotitlecxspmiddle, li.msotitlecxspmiddle, div.msotitlecxspmiddle
+	{mso-style-name:msotitlecxspmiddle;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msotitlecxsplast, li.msotitlecxsplast, div.msotitlecxsplast
+	{mso-style-name:msotitlecxsplast;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0cm;
+	margin-bottom:5.95pt;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=HU link="#0563C1" vlink="#954F72">
+
+<div class=WordSection1>
+
+<p class=MsoTitle><span style='font-family:"Arial",sans-serif'>Az Assembler-ről</span></p>
+
+<p style='margin-bottom:0cm;margin-bottom:.0001pt'><span style='font-family:
+"Arial",sans-serif'>A TVCStudio olyan Z80 assemblerrel rendelkezik, mely képes
+a magyar ékezetes betűket is kezelni, és a TV Computer számára megfelelő ASCII
+kóddá alakítani. Fordításkor az assembler <b>nem tesz különbséget a kis, és
+nagy betűk között (kivéve az idézőjeles szövegeket)</b>. Vagyis a következő
+utasítások egymással azonosak:</span></p>
+
+<p style='margin-bottom:0cm;margin-bottom:.0001pt'><span style='font-family:
+Consolas'>LD, ld, Ld, lD</span></p>
+
+<p style='margin-bottom:0cm;margin-bottom:.0001pt'>Ez a szabály érvényes a
+címkékre is. Vagyis a következő címkék is egymással teljesen azonosak:</p>
+
+<p style='margin-bottom:0cm;margin-bottom:.0001pt'><span style='font-family:
+Consolas'>VIDON, vidon, VIDon, stb…</span></p>
+
+<p style='margin-bottom:0cm;margin-bottom:.0001pt'><span style='font-family:
+"Arial",sans-serif'>Egy assembly utasítás a következő elemeket tartalmazhatja:</span></p>
+
+<p style='margin-bottom:0cm;margin-bottom:.0001pt'><span style='font-family:
+Consolas'>[Címke] utasítás [operandus, operandus] [;megjegyzés]</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Címke</span></b><span
+style='font-family:"Arial",sans-serif'>: az assembly sort opcionálisan
+megjelölhetjük címkével, melyre egy másik utasításban hivatkozhatunk. A címkét
+az utasítással mindig azonos sorban kell elhelyeznünk, és csak a magyar abc
+írásjeleit, számokat, valamint az aláhúzás jelet tartalmazhatja. Opcionálisan a
+címkét a kettős pont karakterrel is zárhatjuk.</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Utasítás</span></b><span
+style='font-family:"Arial",sans-serif'>: az utasítás lehet Z80 processzor
+utasítás, vagy assembler utasítás. A Z80 utasítások leírására ez a súgó nem
+terjed ki, mert a megfelelő dokumentáció könnyen beszerezhető. A lehetséges
+assembler utasításokat lásd az assembler utasítások pontban.</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Operandus</span></b><span
+style='font-family:"Arial",sans-serif'>: Az utasítások nagy része igényel
+operandust, vagy operandusokat, melyeket <b>vesszővel elválasztva kell
+megadnunk</b>.</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Megjegyzés</span></b><span
+style='font-family:"Arial",sans-serif'>: az assembly sort elláthatjuk
+megjegyzéssel, melyet <b>kötelezően a pontosvessző karakterrel</b> kell
+kezdenünk (több soros megjegyzés esetén minden sort):</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>; egysoros megjegyzés</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>; ez egy </span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>; több soros</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>; megjegyzés</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoTitle><span style='font-family:"Arial",sans-serif'>Operandusok</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az assembler
+számára az érték típusú operandusokat hexadecimális, vagy decimális formában
+adhatjuk meg. A hexadecimális értékeket a <b>$</b> karakterrel kell kezdeni,
+melyet a hexadecimális számrendszer karakterei követhetnek:</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>$FF, $23, $3000, stb…</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><strong><span style='font-family:"Arial",sans-serif'>Az
+operandusok típusai:</span></strong></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Byte</span></b></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>$00</span> és <span
+style='font-family:Consolas'>$FF</span> közötti numerikus érték.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Byte cím</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Bizonyos utasításokban
+a byte értéket a () karakterek közé kell elhelyezni. Ezzel jelezzük az
+utasításnak, hogy nem a byte értékét, hanem a byte által címzett memória rekesz
+tartalmát szeretnénk használni:</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>OUT ($0A),A ; A ($0A)
+címre küldjük ki az A regiszter értékét.</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Word</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Két byte-on
+elhelyezkedő numerikus érték a </span><span style='font-family:Consolas'>$0000</span><span
+style='font-family:"Arial",sans-serif'> és </span><span style='font-family:
+Consolas'>$FFFF</span><span style='font-family:"Arial",sans-serif'> közötti
+értéktartományban.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Word cím</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Megegyezik a
+byte címmel, de ezúttal a címzésre két byte-ot használunk:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>LD A,($3000) ; Az A
+regiszterbe a $3000 címen levő értéket töltjük.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Byte index
+regiszterrel</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Egyes
+utasításokban a memóriát egy byte-os értékkel, és az index regiszterekkel
+címezzük. Ennek formája:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>(IX+$AB)</span><span
+style='font-family:"Arial",sans-serif'> vagy decimálisan (IX+171)</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>(IY+$FF)</span><span
+style='font-family:"Arial",sans-serif'> vagy decimálisan </span><span
+style='font-family:Consolas'>(IY+255)</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>LD A,(IX+$AB) ; Az IX
+regiszter értékéhez hozzá adódik a $AB érték, majd az így keletkezett cím
+értéke töltődik az A regiszterbe.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Karakterlánc</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Egy karakter
+lánc az ASCII kódtáblázat karaktereit, és a magyar ékezetes magánhangzókat
+tartalmazhatja. Karakter láncokat a következő formában definiálhatunk:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>„Árvíztűrőtükörfúrógép”</span><span
+style='font-family:"Arial",sans-serif'>, vagy </span><span style='font-family:
+Consolas'>’Árvíztűrőtükörfúrógép’</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Kifejezés</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Bármely
+operandus helyére kifejezéseket is beírhatunk, melyek a fordítás során
+kiértékelődnek, és csak az eredmény épül be a kész programba. Ha a kifejezés
+eredménye a megadott utasításban nem támogatott, akkor az assembler hibaüzenet
+küld. Ez akkor fordulhat elő, ha például a kifejezés eredménye 16 bites, de a
+megadott utasítás csak byte operandust fogad el.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-size:28.0pt'>Makrók</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Az assembler jelenlegi verziója már támogatja a makrók
+használatát. A makró nem tartalmazhat assembly file-t beágyazó <b>include</b>
+utasítást, és beágyazott makrókat.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A makrót a <b>#MACRO</b> utasítással kell bevezetni, melyet
+a makró neve követ. A makró neve után zárójelben paramétereket is megadhatunk.
+A paraméterekre a makróban a paraméter nevével hivatkozhatunk. A makrót az <b>#ENDM</b>
+utasítással kell lezárni.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>#MACRO
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WriteText(<b>videoAddress</b>,<b>text</b>)</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>VIDEO&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EQU <b>videoAddress</b></span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LD HL,SZOVEG</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LD IX,VIDEO</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>CIKLUS&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LD A,(HL)</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CP 0</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+JR Z,VEGE</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LD (IX+0),A</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+INC HL</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+INC IX</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JP CIKLUS</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>VEGE&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JR VEGE</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>SZOVEG
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB <b>text</b></span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+DB,$00</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>#ENDM</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A makró hívása a programban:</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;&nbsp;&nbsp;&nbsp; <span style='font-family:Consolas'>ORG&nbsp;&nbsp;
+$7000</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;
+WriteText($3FC0,”Ez egy komoly program.”)</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp; END</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:28.0pt;font-family:"Arial",sans-serif'>Fordítási
+direktívák</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A fordítási direktívák
+segítségével lehetőségünk van befolyásolni a fordítás menetét. A következő
+fordítási direktívák támogatottak:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#DEFINE
+szimbólum helyettesítő szöveg</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Egy vagy két
+operandusa lehet. Ha egy operandussal használjuk, akkor létrehozza a megadott
+nevű szimbólumot, melyet feltételes fordításhoz használhatunk (Lásd #IFDEF,
+#IFNDEF). Ha második operandust is megadunk, akkor a szimbólum helyére az
+assembler a helyettesítő szöveget írja.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>#DEFINE .db DB</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>#DEFINE .dw DW</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>.db 12,34 =&gt;
+DB 12,34</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>.dw $FFFF =&gt;
+DW $FFFF</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Remekül
+használható a különböző assembler szintaktikák áthidalására.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#UNDEF
+szimbólum</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Érvényteleníti
+az előzőekben a #DEFINE utasítással létrehozott szimbólumot.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#IFDEF
+szimbólum</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Feltételes fordítási
+blokkot nyithatunk a segítségével. Az utasítás igaz értékkel tér vissza, ha a
+szimbólum előzőekben a #DEFINE utasítással létre lett hozva. Feltételes
+fordításnál hasznos.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#IFNDEF
+szimbólum</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Feltételes
+fordítási blokkot nyithatunk a segítségével. Az utasítás igaz értékkel tér
+vissza, ha a szimbólum előzőekben a #DEFINE utasítással nem lett létre hozva.
+Feltételes fordításnál hasznos.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#ELSE</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Elágaztatást tesz
+lehetővé az #IFDEF #IFNDEF által létrehozott fordítási blokkban.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#ENDIF</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az #IFDEF
+#IFNDEF által megnyitott feltételes fordítás blokkot zárja le.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Példa
+feltételes fordításra:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>#DEFINE TVC</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>#IFDEF TVC</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+LD A,$78</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CALL $5634</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>#ELSE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;Ezt a blokkot az assembler figyelmen kívül hagyja.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;LD B,$FA</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;CALL $FFDA</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>#ENDIF</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>#INCLUDE
+„program.tvcasm”</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítással
+egy másik assembly forrás file-t ágyazhatunk be a hívás helyére. Az utasításnak
+meg kell adni a file nevét, és elérési útját. Ha csak a file nevét adjuk meg,
+akkor a beágyazandó file-t a beágyazó file mellett keresi. A file nevében mind
+relatív, mind abszolút útvonalat is használhatunk.</span></p>
+
+<p class=MsoNormal><span style='font-size:28.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:28.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:28.0pt;font-family:"Arial",sans-serif'>Logikai
+és aritmetikai kifejezések</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az assembler
+támogatja a számtani, logikai kifejezések, valamint néhány függvény használatát
+bizonyos processzor és assembler utasítások esetében.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A támogatott
+műveletek és függvények prioritás szerint (a prioritás felülről lefele csökken.
+Az egy sorban levő műveletek azonos prioritásúak):</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Előjelek (+,-)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Szorzás (*),
+Osztás(/)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Egyes
+komplemens (~), Összeadás(+), Kivonás(-)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Logikai vagy
+(|)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Logikai kizáró
+vagy (^)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Logikai és
+(&amp;)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Bitenkénti
+balra léptetés (&lt;), bitenkénti jobbra léptetés (&gt;)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Függvények:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>SQRT: A megadott
+operandusból négyzetgyököt von.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>HIGH: A 16
+bites szó felső byte-ját adja vissza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LOW: A 16 bites
+szó alsó byte-ját adja vissza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>ABS: A megadott
+operandus abszolút értékét adja vissza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A
+kifejezésekben a zárójelek használata megengedett, bizonyos utasítások esetében
+azonban a zárójel használata címzést jelent, ezért ha ezekben az utasításokban
+kifejezést használunk, akkor <b>dupla zárójelezést kell alkalmazni.</b></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>PL:</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>LD A,(3+5)</span></b><span
+style='font-family:"Arial",sans-serif'> eredménye <b>LD A,8</b> lesz, mert az
+egyszeres zárójelet az assembler kifejezésként azonosítja, ezért feloldja.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Címzéshez
+használjunk dupla zárójelezést:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>LD A,((3+5))</span></b><span
+style='font-family:"Arial",sans-serif'> eredménye már a kívánt <b>LD A,(8)</b>
+lesz.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Műveletek
+részletes bemutatása:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Szorzás:</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott két
+operandus szorzatát szolgáltatja. Ha az eredmény nagyobb, mint 16 bit, akkor
+túlcsordulás hibaüzenetet kapunk.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$4*$5</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A, (3*4)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Osztás:</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az első
+operandust elosztja a másodikkal. A második operandus nem lehet nulla.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$6/$2</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A, (6/2)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Egyes
+komplemens:</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott
+operandus egyes komplemensét szolgáltatja.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A, ~$FF</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Összeadás</span></b><span
+style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott két
+operandus összegét szolgáltatja. Ha az eredmény nagyobb, mint 16 bit, akkor
+túlcsordulás hibaüzenetet kapunk.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$4+$5</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A, (3+4)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Kivonás</span></b><span
+style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott két
+operandus különbségét szolgáltatja.Ha az eredmény nagyobb, mint 16 bit, akkor
+túlcsordulás hibaüzenetet kapunk.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$4-$5</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A, (($4-$5))</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Logikai
+vagy:</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott két
+operandus között bitenkénti vagy műveletet végez.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$FF|$00</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Logikai
+kizáró vagy:</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott két
+operandus között bitenkénti logikai kizáró vagy műveletet végez.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$FF^$00</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Logikai és:</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott két
+operandus között bitenkénti és műveletet végez.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD
+A,$FF&amp;$00</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Bitenkénti
+léptetés balra</span></b><span style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott első
+operandus bitjeit elforgatja balra a második operandusban megadott bit számban.
+A második operandus értéke 1-7 között lehet.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A belépő bitek
+helyére nullák lépnek.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$FF&lt;2</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Bitenkénti
+léptetés jobbra</span></b><span style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott első
+operandus bitjeit elforgatja jobbra a második operandusban megadott bit
+számban. A második operandus értéke 1-7 között lehet.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A belépő bitek
+helyére nullák lépnek.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,$FF&gt;2</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Függvények
+bemutatása</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>SQRT</span></b><span
+style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A megadott
+operandus négyzetgyökét szolgáltatja.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,sqrt($4)</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>HIGH</span></b><span
+style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az
+operandusként megadott 16 bites szó felső byte-ját adja vissza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD
+A,HIGH($FF00) – az eredmény LD A,$FF</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>LOW</span></b><span
+style='font-family:"Arial",sans-serif'>:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az operandusként
+megadott 16 bites szó alsó byte-ját adja vissza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,LOW($FFAA)
+– az eredmény LD A,$AA</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>ABS</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az
+operandusként megadott érték abszolút értékét adja vissza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,ABS(-3) –
+az eredmény LD A,3</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>LD A,
+ABS((-3)+(-5)) – az eredmény LD A,8</span></p>
+
+<p class=MsoNormal><span style='font-size:28.0pt;font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:28.0pt;font-family:"Arial",sans-serif'>Az
+assembler hiányosságai</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az assembler
+jelenlegi verziója nem támogatja a következő funkciókat:</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>Bináris, és
+oktális konstansok</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az assembler
+jelenlegi verziója csak a hexadecimális, és decimális numerikus értékek
+megadását teszi lehetővé. A bináris és oktális numerikus értékek jelenleg nem
+támogatottak. Amennyiben igény mutatkozik a bináris értékek támogatására, akkor
+szívesen beépítem. Az oktális értékek támogatásának személy szerint nem sok
+értelmét látom.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Ha további
+hiányosságokat tapasztalsz, vagy lenne fejlesztési ötleted, kérlek jelezd a <a
+href="mailto:tvcstudio@freemail.hu">tvcstudio@freemail.hu</a> e-mail címen.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

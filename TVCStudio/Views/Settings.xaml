@@ -1,0 +1,393 @@
+﻿<Window x:Class="TVCStudio.Views.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TVCStudio.ViewModels"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        Title="Beállítások" d:DataContext="{d:DesignInstance vm:SettingsViewModel }" Height="630" Width="920" ResizeMode="CanResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" WindowStyle="ThreeDBorderWindow" FontFamily="Consolas" FontSize="14">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <avalonDock:DockingManager Grid.Row="0">
+            <avalonDock:DockingManager.Theme>
+                <Binding Path="SelectedThemeData.Theme"/>
+            </avalonDock:DockingManager.Theme>
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel CanRepositionItems="False">
+                    <avalonDock:LayoutDocumentPane CanRepositionItems="False">
+                        <avalonDock:LayoutDocument Title="Assembly szerkesztő" CanClose="False" CanFloat="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="0,2,0,0">
+                                    <GroupBox Margin="0,2,0,0" Header="Kódszerkesztés">
+                                        <StackPanel>
+                                            <CheckBox IsChecked="{Binding Path=AutoCodeFormating}" Margin="0,4,0,6">Automatikus kódigazítás (CTRL+K)</CheckBox>
+                                            <CheckBox IsChecked="{Binding Path=AutoCodeAnalization}" Margin="0,0,0,6">Automatikus kódanalizálás a program módosításakor</CheckBox>
+                                            <CheckBox IsChecked="{Binding Path=CodeFolding}" Margin="0,0,0,6">Kód összecsukás engedélyezése</CheckBox>
+                                            <CheckBox IsChecked="{Binding Path=MarkInactiveCode}" Margin="0,0,0,6">Inaktív kód megjelőlése</CheckBox>
+                                            <CheckBox IsChecked="{Binding Path=ShowClockCycles}" Margin="0,0,0,6">Ciklusidő megjelenítése a Z80 utasítások soraiban</CheckBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox Margin="3,6,0,3" Header="Kódszerkesztő stílusa">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Margin="0,15,0,0">
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Szerkesztő háttérszíne:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Szerkesztő betűszíne:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">String-ek színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Megjegyzések színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Processzor utasítások színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Assembler utasítások színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Preprocesszor utasítások színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Számok, kifejezések színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Inaktív kód színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Hibás kód háttérszíne:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Ciklus idő háttérszíne:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Regiszterek színe:</TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <ComboBox Margin="0,12,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BackgroundColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,8" ItemsSource="{Binding Brushes}" SelectedItem="{Binding ForegroundColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding StringColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding CommentColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,8" ItemsSource="{Binding Brushes}" SelectedItem="{Binding ProcessorInstruction}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding AssemblerInstruction}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding PreprocessorInstructionColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding ExpressionColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding InactiveCodeColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding WrongCodeBackgroundColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding ClockCycleColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding RegisterColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </GroupBox>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <GroupBox Margin="5,2,0,0" Header="Kódformázás">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Margin="0 1 0 10">Behúzás az előfeldolgozó sorok előtt:</TextBlock>
+                                                <TextBlock Margin="0 0 0 10">Behúzás az assembly sorok előtt:</TextBlock>
+                                                <TextBlock Margin="0 0 0 10">Cimke szekció mérete:</TextBlock>
+                                                <TextBlock Margin="0 0 0 8">Utasítás szekció mérete:</TextBlock>
+                                                <TextBlock Margin="0 0 0 8">Operandus szekció mérete:</TextBlock>
+                                                <TextBlock Margin="0 0 0 8">Szerkesztő betűtípusa:</TextBlock>
+                                                <TextBlock Margin="0 0 0 8">Szerkesztő betűmérete(px):</TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <xctk:IntegerUpDown  Width="70" Margin="0 0 0 5" Minimum="5" Maximum="50" Value="{Binding Path=PreprocessorIndentSize, Mode=TwoWay}" />
+                                                <xctk:IntegerUpDown Width="70" Margin="0 0 0 5" Minimum="5" Maximum="50" Value="{Binding Path=AssemblyRowIndentSize, Mode=TwoWay}" />
+                                                <xctk:IntegerUpDown Width="70" Margin="0 0 0 5" Minimum="5" Maximum="50" Value="{Binding Path=LabelSectionPaddingSize, Mode=TwoWay}" />
+                                                <xctk:IntegerUpDown Width="70" Margin="0 0 0 5" Minimum="5" Maximum="50" Value="{Binding Path=InstructionSectionPaddingSize, Mode=TwoWay}" />
+                                                <xctk:IntegerUpDown Width="70" Minimum="5" Maximum="50" Value="{Binding Path=OperandSectionPaddingSize, Mode=TwoWay}" />
+                                                <ComboBox Margin="0 0 0 5" ItemsSource="{x:Static Fonts.SystemFontFamilies}" SelectedItem="{Binding EditorFont}" />
+                                                <xctk:IntegerUpDown Width="70" Minimum="8" Maximum="50" Value="{Binding Path=EditorFontSize, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </GroupBox>
+                                    <GroupBox Margin="5,8,0,0" Header="Kódszerkesztő előnézet">
+                                        <Grid Margin="2 8 2 2" Width="400" Height="198" Background="{Binding BackgroundColor}">
+                                            <StackPanel>
+                                                <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}" Margin="8 8 0 0" Foreground="{Binding PreprocessorInstructionColor}">#define TVC</TextBlock>
+                                                <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="8 0 0 0" Foreground="{Binding PreprocessorInstructionColor}">#ifdef TVC</TextBlock>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="12 0 12 0" Foreground="{Binding ForegroundColor}">MATEK</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 12 0" Foreground="{Binding AssemblerInstruction}">EQU</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 12 0" Foreground="{Binding ExpressionColor}">ABS($45)+$FF</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding CommentColor}">;Matek címzés</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="12 0 6 0" Foreground="{Binding ForegroundColor}">SPRITE</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 16 0" Foreground="{Binding AssemblerInstruction}">DB</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ExpressionColor}">$12</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ForegroundColor}">,</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ExpressionColor}">$FA</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ForegroundColor}">,</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ExpressionColor}">123</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ForegroundColor}">,</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 6 0" Foreground="{Binding ExpressionColor}">89</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding CommentColor}">;Szerkesztő kéne</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="12 0 6 0" Foreground="{Binding ForegroundColor}">SZOVEG</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 16 0" Foreground="{Binding AssemblerInstruction}">DB</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding StringColor}">"VIDEOTON TVC"</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="3 0 12 0" Foreground="{Binding ClockCycleColor}">[7]</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="12 0 12 0" Foreground="{Binding ForegroundColor}">CÍMKE</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 12 0" Foreground="{Binding ProcessorInstruction}">LD</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 12 0" Foreground="{Binding RegisterColor}">HL,</TextBlock>
+                                                    <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="0 0 0 0" Foreground="{Binding ExpressionColor}">$FFFF</TextBlock>
+                                                </WrapPanel>
+                                                <TextBlock FontFamily="{Binding EditorFont}" FontSize="{Binding EditorFontSize}"  Margin="8 0 0 0" Foreground="{Binding PreprocessorInstructionColor}">#endif</TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </GroupBox>
+                                </StackPanel>
+                            </Grid>
+                        </avalonDock:LayoutDocument>
+                        <avalonDock:LayoutDocument Title="Basic szerkesztő" CanClose="False" CanFloat="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <GroupBox Margin="0,2,0,0" Header="Kódszerkesztés" IsEnabled="False">
+                                        <StackPanel>
+                                            <CheckBox IsChecked="{Binding Path=AutoLineNumbering}" Margin="0,4,0,6">Automatikus kódsorszámozás új sor beszúrásakor</CheckBox>
+                                            <CheckBox IsChecked="{Binding Path=RemoveSpacesBeforeBuild}" Margin="0,0,0,6">Felesleges SPACE karakterek eltávolítása tokenizáláskor</CheckBox>
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox Margin="3,6,0,3" Header="Kódszerkesztő stílusa">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0" Margin="0,15,0,0">
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Szerkesztő háttérszíne:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Szerkesztő betűszíne:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">String-ek színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Basic kulcsszavak színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Számok színe:</TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <ComboBox Margin="0,12,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicBackgroundColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,8" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicForegroundColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicStringColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicKeywordColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicNumberColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                            </StackPanel>
+                                        </Grid>
+                                    </GroupBox>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <GroupBox Margin="5,2,0,0" Header="Kódformázás">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Margin="0 1 0 10">Legelső kódsor sorszáma:</TextBlock>
+                                                <TextBlock Margin="0 0 0 10">Sornövekmény:</TextBlock>
+                                                <TextBlock Margin="0 0 0 8">Szerkesztő betűtípusa:</TextBlock>
+                                                <TextBlock Margin="0 0 0 8">Szerkesztő betűmérete(px):</TextBlock>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <xctk:IntegerUpDown  Width="70" Margin="0 0 0 5" Minimum="1" Maximum="9999" Value="{Binding Path=StartRowNumber, Mode=TwoWay}" IsEnabled="False" />
+                                                <xctk:IntegerUpDown Width="70" Margin="0 0 0 5" Minimum="1" Maximum="9999" Value="{Binding Path=RowNumberIncrement, Mode=TwoWay}" IsEnabled="False" />
+                                                <ComboBox Margin="0 0 0 5" ItemsSource="{x:Static Fonts.SystemFontFamilies}" SelectedItem="{Binding BasicEditorFont}" />
+                                                <xctk:IntegerUpDown Width="70" Minimum="8" Maximum="50" Value="{Binding Path=BasicEditorFontSize, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                                            </StackPanel>
+                                        </Grid>
+                                    </GroupBox>
+                                    <GroupBox Margin="5,8,0,0" Header="Kódstílus előnézet">
+                                        <Grid Margin="2 8 2 2" Width="400" Height="198" Background="{Binding BasicBackgroundColor}">
+                                            <StackPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">10</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">PRINT</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicStringColor}">"Videoton TV Computer"</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">20</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">FOR</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicForegroundColor}">N</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicForegroundColor}">=</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">1</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">TO</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">12</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">30</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">PRINT</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">AT</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicForegroundColor}">I*</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">12</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicForegroundColor}">,</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">25</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicStringColor}">"Hello"</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">40</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">NEXT</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicForegroundColor}">I</TextBlock>
+                                                </WrapPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </GroupBox>
+                                </StackPanel>
+                            </Grid>
+                        </avalonDock:LayoutDocument>
+                        <avalonDock:LayoutDocument Title="Általános" CanClose="False" CanFloat="False">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <WrapPanel Grid.Row="0">
+                                    <TextBlock Margin="0 13 0 0">Az alkalmazás stílusa:</TextBlock>
+                                    <ComboBox Margin="0 10 0 0" ItemsSource="{Binding ThemeList}" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding SelectedThemeData}"/>
+                                </WrapPanel>
+                                <GroupBox Grid.Row="1" Margin="0 10 0 0" Header="Emulátor beállítások">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="Emulátor:" Margin="0 13 0 0" />
+                                            <TextBox Grid.Column="1" FontWeight="Bold" IsReadOnly="True"  Text="{Binding Path=EmulatorPath}" Width="600" Margin="5 13 0 0" />
+                                            <Button Grid.Column="2" Command="{Binding SelectEmulatorCommand}" Width="110" Margin="0 13 0 0">
+                                                <TextBlock Text ="Kiválasztás" />
+                                            </Button>
+                                        </Grid>
+                                        <TextBlock FontWeight="Bold" Margin="0 23 0 0" Text ="Argumentumok (használható file konstans %CAS%):" />
+                                        <TextBox Height="100" Text="{Binding Path=EmulatorArguments}" Margin="0,20,505,0"  Width="380" />
+                                    </StackPanel>
+                                </GroupBox>
+                                <GroupBox Grid.Row="2" Margin="0 10 0 0" Header="Egyéb beállítások">
+                                    <StackPanel>
+                                        <CheckBox IsChecked="{Binding Path=AutoIntellisence}" Margin="0,6,0,0">Kódkiegészítő ablak automatikus megjelenítése gépeléskor.</CheckBox>
+                                        <CheckBox IsChecked="{Binding Path=RunAfterSucessfulBuild}" Margin="0,6,0,0">Program azonnali indítása sikeres fordítás után.</CheckBox>
+                                        <CheckBox IsChecked="{Binding Path=ClearOutputBeforeBuild}" Margin="0,6,0,0">Kimeneti ablak törlése fordítás előtt.</CheckBox>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </avalonDock:LayoutDocument>
+                    </avalonDock:LayoutDocumentPane>
+                </avalonDock:LayoutPanel>
+            </avalonDock:LayoutRoot>
+        </avalonDock:DockingManager>
+        <Grid Grid.Row="1">
+            <Button Margin="10 10 0 10" Command="{Binding Path=ResetSettingsCommand}" HorizontalAlignment="Left">
+                <TextBlock Text="Alapértelmezés" />
+            </Button>
+            <Button Margin="0 10 10 10" Click="SaveClick" HorizontalAlignment="Right">
+                <TextBlock Text="Alkalmaz" />
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

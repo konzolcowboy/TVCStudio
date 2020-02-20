@@ -1,0 +1,308 @@
+﻿; Sprite(téglalap) mozgatása a belső botkormánnyal (Indítási cím $6160)
+
+ 
+
+;{Szubrutinok
+
+;{VIDON
+                ORG     $6000
+VIDON           LD      A,$50           ;A video memória belapozása
+                LD      ($3),A          ;a $8000-$0BFFF területre
+                OUT     ($2),A          ;(2.lap)
+                RET
+ ;}
+
+;{NEGYZETEK
+; Ez a rutin krajzolja ki a négyzeteket a képernyőre
+                
+                ORG     $6010
+NEGYZETEK       RST     $30             ;Képernyő
+                DB      $5              ;törlés
+                LD      A,$11           ;Sötét kékeszöld szín
+                OUT     ($63),A         ;a 3. paletta regiszterbe
+                LD      A,$44           ;A piros szín betöltése
+                OUT    ($62),A         ;a 2. paletta regiszterbe
+                CALL    VIDON           ;Video bekapcsolása
+                
+                LD      HL,$8810        ;----------------------
+                LD      DE,$0020        ;
+                LD      A,$FF           ;
+                LD      B,$90           ;
+N1SOR           PUSH    BC              ; A sötét kékeszöld
+                LD      B,$20           ; színű négyzet
+N1OSZLOP        LD      (HL),A          ; kirajzolása
+                INC     HL              ; a $8810 címre
+                DJNZ    N1OSZLOP        ;
+                ADD     HL,DE           ;
+                POP     BC              ;
+                DJNZ    N1SOR           ;                    
+                LD      DE,$002C        ;----------------------
+                LD      HL,$8ED6        ;
+                LD      A,$0F           ;
+                LD      B,$5A           ;
+N2SOR           PUSH    BC              ;
+                LD      B,$14           ; A piros 
+N2OSZLOP        LD      (HL),A          ; négyzet 
+                INC     HL              ; kirajzolása a
+                DJNZ    N2OSZLOP        ; a $8ED6 címre
+                ADD     HL,DE           ;
+                POP     BC              ;
+                DJNZ    N2SOR           ;
+                RET                     ;-----------------------
+;}   
+
+;{VÍZSZINTES MOZGATÁS
+;PR16.1 Vízszintes mozgatás
+
+
+                ORG     $6050
+VISZMOZG        LD      DE,$003D        ;
+                LD      B,$08           ;
+VISZCIKL        LD      A,(HL)          ;
+                XOR     C               ;A bal és jobb
+                LD      (HL),A          ;szélső videomemóriabeli
+                INC     HL              ;byte-okat a mozgatás
+                INC     HL              ;aktuális fázisának
+                INC     HL              ;megfelelően(a C regiszerben
+                LD      A,(HL)          ;hozott bitmaszk szerint)
+                XOR     C               ;változtatjuk meg
+                LD      (HL),A          ;
+                ADD     HL,DE           ;
+                DJNZ    VISZCIKL        ;
+                RET                     ;
+;}   
+
+;{FÜGGŐLEGES MOZGATÁS
+;PR 16.2 Függőleges mozgatás
+
+
+                ORG     $6070 
+FUGGMOZG        JR      C,FM1
+                LD      DE,$0040
+                SBC     HL,DE
+FM1             LD      DE,$01FD
+                PUSH    HL
+                PUSH    AF
+                LD      B,$02
+FM2             LD      A,(HL)
+                XOR     C
+                LD      (HL),A
+                INC     HL
+                LD      A,(HL)
+                XOR     $F0
+                LD      (HL),A
+                INC     HL
+                LD      A,(HL)
+                XOR     $F0
+                LD      (HL),A
+                INC     HL
+                LD      A,$F0
+                XOR     C
+                XOR     (HL)
+                LD      (HL),A
+                ADD     HL,DE
+                DJNZ    FM2
+                POP     AF
+                POP     HL
+                RET     NC
+                LD      DE,$0040
+                ADD     HL,DE
+                RET
+
+;}
+
+;{A vízszintes mozgatás vezérlőrutinja
+;PR 16.3     A vízszintes mozgatás vezérlőrutinja
+
+                ORG     $60A0
+VMVR            LD      HL,($5FF0)
+                LD      B,A
+                INC     A
+                JR      NZ,VMVR1         ;A balra léptetés
+                LD      A,L              ;lehetőségének vizsgálata
+                AND     $3F
+                JR      NZ,VMVR2
+                LD      A,($5FF2)
+                OR      A
+                RET     NZ
+                JR      VMVR2
+VMVR1           LD      A,L
+                AND     $3F
+                CP      $3B
+                JR      NZ,VMVR2
+                LD      A,($5FF2)
+                CP      $03
+                RET     Z
+                
+VMVR2           LD      A,($5FF2)
+                LD      C,A            ;Az új helyzet
+                ADD     A,B            ;sorszámának beállítása(TIP)
+                AND     $03
+                LD      ($5FF2),A
+                
+                DEC     HL
+                PUSH    HL
+                LD      A,B
+                INC     A
+                OR      C
+                JR      Z,VMVR3
+                POP     HL
+                INC     HL             ;Az új kezdőcím
+                PUSH    HL             ;beállítása
+                LD      A,B
+                DEC     A
+                OR      C
+                CP      $03
+                JR      NZ,VMVR3
+                INC     HL
+VMVR3           LD      ($5FF0),HL
+                POP     HL
+                
+                LD      A,B
+                LD      B,C
+                SCF
+                LD      C,$00          ;A helyzetnek megfelelő
+                INC     B              ;bitmaszk elkészítése
+VMVR4           RR      C
+                DJNZ    VMVR4
+                
+                INC     A
+                JR      NZ,VMVR5
+                SLA     C
+                JR      NC,VMVR5
+                LD      C,$10
+VMVR5           CALL    VISZMOZG      ;A mozgás végrehajtása
+                RET
+;}
+
+;{A függőleges mozgatás vezérlőrutinja
+;PR 16.4  A függőleges mozgatás vezérlőrutinja
+
+
+
+               ORG     $6100
+FMVR           LD      HL,($5FF0)
+               LD      B,A
+               INC     A
+               JR      NZ,FMVR1       ;A felfelé léptetés
+               LD      A,L            ;lehetőségének
+               AND     $C0            ;vizsgálata
+               OR      H
+               CP      $80
+               RET     Z
+               JR      FMVR2
+               
+FMVR1          PUSH    HL
+               LD      A,L
+               AND     $C0
+               LD      L,A           ;A lefelé léptetés
+               LD      DE,$B9C0      ;lehetőségének
+               SBC     HL,DE         ;vizsgálata
+               POP     HL
+               RET     Z
+               
+FMVR2          LD      A,($5FF2)
+               LD      C,$F0
+               OR      A
+               JR      Z,FMVR4
+FMVR3          SRL     C
+               DEC     A
+               JR      NZ,FMVR3
+               LD      A,C
+               AND     $F0
+               LD      C,A
+               
+FMVR4          LD      A,$01
+               SUB     B
+               CCF
+               
+               CALL    FUGGMOZG
+               LD      ($5FF0),HL
+               RET
+;}
+
+;{A téglalap első megjelenítése
+; PR 16.5      A téglalap első megjelenítése
+
+
+               ORG     $6140
+TEM            XOR     A
+               LD      ($5FF2),A   ;Inicializálás
+               LD      HL,$B81F
+               LD      ($5FF0),HL
+               
+               LD      B,$08
+               LD      DE,$003D
+               LD      A,$F0
+TEM1           PUSH    BC
+               LD      B,$03
+TEM2           LD      (HL),A       ;A téglalap megjelenítése
+               INC     HL
+               DJNZ    TEM2
+               ADD     HL,DE
+               POP     BC
+               DJNZ    TEM1
+               RET
+;}
+
+;}
+
+;{Főprogram
+;Főprogram
+
+               ORG     $6160
+               CALL    NEGYZETEK    ;Négyzetek megjelenítése
+               CALL    TEM          ;A téglalap ábrázolása
+KEYPRESS       CALL    BILLBEOLVAS  ;Billentyűzet leolvasása
+               CP      $0D
+               JR      Z,VEGE       ;RETURN-RE befejezés
+               
+               CP      $04
+               JR      Z,FLEPESV
+               CP      $13
+               JR      Z,FLEPESV
+               
+               CP      $05
+               JR      Z,VLEPESV
+               CP      $18
+               JR      NZ,KEYPRESS
+               
+VLEPESV        SUB     $06
+               JR      C,VLEPES
+               LD      A,$01
+VLEPES         CALL    FMVR
+               JR      KEYPRESS
+               
+FLEPESV        SUB     $13
+               JR      Z,FPV
+               LD      A,$02
+FPV            DEC     A
+               CALL    VMVR
+               JR      KEYPRESS
+VEGE           CALL    VIDOFF
+               RET
+
+;}
+
+;{Billentyű vizsgáló rutin
+; Billentyű vizsgáló rutin
+
+               ORG     .LC
+BILLBEOLVAS    RST     $30
+               DB      $91
+               LD      A,C
+               RET
+               
+;}
+
+;{Memóriakonfiguráció visszaállítása
+               
+               ORG     .LC
+VIDOFF         RST     $30
+               DB      $05     ;Képernyőtörlés
+               LD      A,$70   ;Bekapcsoláskori memória konfiguráció visszaállítása
+               LD      ($3),A
+               OUT     ($2),A
+               RET
+ ;}
+ 

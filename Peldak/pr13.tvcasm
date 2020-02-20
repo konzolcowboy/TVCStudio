@@ -1,0 +1,36 @@
+﻿; PR13: 15 színű vonal rajzolása a képernyőre
+
+             ;Főprogram
+             ORG  $3000
+             LD   A,($0B13)
+             PUSH AF ; 6-os port másolata a verembe
+             AND  $FC
+             OR   $02  
+             OUT  ($6),A  ;16-os video mód bekapcsolása
+             RST  $30
+             DB   $05     ;Képernyőtörlés
+             CALL VIDON  ;Videó ram bekapcsolása
+             LD   DE,$9E1C;vonal kezdőcíme
+             LD   HL,CKOD ;színbyte-ok címe
+             LD   BC,$08  ;színbyte-ok száma
+             LDIR         ;színbyte-ok másolása
+             CALL VIDOFF ;U0-U1-U2-SYS lapozás visszaállítása
+             RST  $30
+             DB   $91     ;Várakozás billentyű lenyomásra
+             POP  AF
+             OUT  ($6),A   ;Korábbi videó mód visszaállítása
+             RET
+CKOD         DB   $01,$0D,$31,$3D,$C1,$CD,$F1,$FD
+             
+
+             ; Szubrutin a videó RAM bekapcsolására
+VIDON        LD A,$50 ;Videó RAM belapozása a második lapra
+             LD ($3),A
+             OUT ($2),A
+             RET
+
+             ; Szubrutin a videó RAM kikapcsolására
+VIDOFF       LD A,$70 ;Bekapcsoláskori memória konfiguráció visszaállítása
+             LD ($3),A
+             OUT ($2),A
+             RET

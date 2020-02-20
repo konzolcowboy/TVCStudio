@@ -1,0 +1,21 @@
+﻿10  REM ***********************************
+20  REM *óra
+30  REM ***********************************
+40  GRAPHICS 4
+50  SET PALETTE 80,68,0,85
+60  SET PAPER 12:SET BORDER 80
+70  CLS
+80  REM a számlap felrajzolása
+90  FOR N=1 TO 12
+100 PRINT AT 11-10*COS(N/6*3.14),16+10*SIN(N/6*3.14):N
+110 NEXT N
+120 FOR T=1 TO 200000:REM másodpercek
+130 A=T/30*PI
+140 KX=240*SIN(A):KY=250*COS(A)
+150 SET MODE 0
+160 PLOT 512,560;512+KX,560+KY
+170 REM késleltetés kb. 1mp
+180 FOR N=1 TO 400:NEXT N
+190 SET MODE 3
+200 PLOT 512,560;512+KX,560+KY
+210 NEXT T

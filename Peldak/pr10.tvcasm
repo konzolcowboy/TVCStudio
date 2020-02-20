@@ -1,0 +1,42 @@
+﻿;PR10 Videoton TV Computer kiíratása minden videó módban
+;A program addig váltogatja a videó módokat, amig ENTER-t nem nyomtak
+
+
+         ORG $3000      ;Program kezdőcíme
+         RST $30
+         DB  $5         ;Képernyő törlése
+         LD  BC,$010C   ;Kiírandó szöveg pozíciója 0C-oszlop, 01-sor
+         RST $30
+         DB  $03        ;Kiírási pozíció beállítása a BC-ben levő pozícióba
+         LD  DE,SZOVEG
+         LD  BC,20       ; A szöveg hossza BC-be
+         RST $30
+         DB  $02
+         LD  A,($0B13) ; A-ba olvassuk a 06-os porthoz tartozó másolat értékét
+UJRA     AND $FC       ; Az érték alsó két bitjét kinullázzuk (A kettes videó módhoz) 
+         OUT ($6),A    ; A kettes videó mód bekapcsolása
+         PUSH AF       ; Az értéket a verembe tesszük
+         RST  $30
+         DB   $91      ;Várakozás egy billentyű lenyomásra
+         POP  AF
+         OR   $01      ;Aló bit 1-re állítása (4-es videó mód)
+         OUT  ($6),A   ; 4-es videómód beállítása
+         PUSH  AF 
+         RST  $30
+         DB   $91     ;Várakozás billentyű leütésre
+         POP  AF
+         OR   $02     ; 0 és 1-es bitek 1-re állítása (videó mód 16)
+         OUT  ($6),A  ;16-os videomód bekapcsolása
+         PUSH AF
+         RST  $30
+         DB   $91     ;Várakozás billentyű leütésre
+         LD   A,C     ;A-ba a lenyomott billentyű kódja
+         CP   $0D     ;ENTER-Nyomták le?
+         POP  BC      ;BC-be AF régi értéket
+         LD   A,B
+         JR   NZ,UJRA ;Nem ENTER-t nyomtak, újra kezdjük az üzemmódok váltogatását
+         AND  $FD     ;4-es mód visszaállítása
+         OUT  ($6),A
+         LD   ($0B13),A
+         RET
+SZOVEG   DB  'Videoton TV-Computer'

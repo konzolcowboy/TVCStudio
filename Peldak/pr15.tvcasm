@@ -1,0 +1,78 @@
+;PR15 két négyzet megjelenítése, melyek SPACE lenyomására színt cserélnek
+
+
+             org  $3000
+             rst  $30
+             db   $05     ;Képernyőtörlés
+             ld   a,$11   ;A sötét kékeszöld szín kódja
+             out  ($63),a ;Betöltés a 3. paletta regiszterbe
+             ld   a,$44   ;A piros szín kódja
+             out  ($62),a ; betöltés a 2. paletta regiszterbe
+             call vidon
+             ld   hl,$8010;1. TV sor címe
+             ld   de,$20  ;Eltolási érték a következő sorhoz
+             ld   a,$ff   ;cián byte színkódka
+             ld   b,$80
+S1           push bc
+             ld   b,$20   ;egy sorban $20 byte lesz
+S2           ld   (hl),a  ;egy byte megjelenítése
+             inc  hl      ;a következő cím a VID-ben
+             djnz s2      ;ismétlés $20-szor
+             add  hl,de   ;a következő sor eleje
+             pop  bc      ;sorszámláló
+             djnz s1      ;ismétlés $80-szor
+             ld   de,$2c  ;eltolás a következő sor elejéhez
+             ld   hl,$8ed6;az első piros sor elejének a címe
+             ld   a,$f    ; piros színt adó byte
+             ld   b,$5a
+s3           push bc
+             ld   b,$14   ;a négyzet byte-ok száma egy tv sorban
+s4           ld   (hl),a  ;egy byte megjelenítése
+             inc  hl
+             djnz s4
+             add  hl,de   ;következő sor címe
+             pop  bc      ;a sorszámláló
+             djnz s3      ;ismétlés $5ah-szor
+s5           rst  $30
+             db   $91     ;képernyőtörlés
+             ld   a,c     ;a lenyomott karakter kódja
+             cp   $20     ;szóköz?
+             jr   z,s6    ;ha igen ugrás előre
+             cp   $0d     ;return?
+             jr   nz,s5   ;ha nem ugrás vissza
+             call vidoff
+             ret
+             
+             ;Színváltás lebonyolítása
+             
+s6           ld   de,$0020
+             ld   hl,$8810
+             ld   b,$90
+s7           push bc
+             ld   b,$20
+s8           ld   a,(hl)
+             xor  $f0
+             ld   (hl),a
+             inc  hl
+             djnz s8
+             add  hl,de
+             pop  bc
+             djnz s7
+             jr   s5
+
+             
+             
+             
+             
+             ; Szubrutin a videó RAM bekapcsolására
+VIDON       LD A,$50 ;Videó RAM belapozása a második lapra
+            LD ($3),A
+            OUT ($2),A
+            RET
+
+             ; Szubrutin a videó RAM kikapcsolására
+VIDOFF      LD A,$70 ;Bekapcsoláskori memória konfiguráció visszaállítása
+            LD ($3),A
+            OUT ($2),A
+            RET
+                

@@ -1,0 +1,13 @@
+﻿10  REM ***********************************
+20  REM *vonalak
+30  REM ***********************************
+40  GRAPHICS 16
+50  RANDOMIZE
+60  FOR I=1 TO 50 :REM 50 vonal
+70  PLOT RND(1023),RND(959); RND(1023),RND(959)
+80  SET INK RND(15)
+90  SET STYLE RND(15)
+100 NEXT I
+110 REM késleltetetés
+120 FOR J=1 TO 999 :NEXT J
+130 GOTO 60

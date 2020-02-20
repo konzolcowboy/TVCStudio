@@ -1,0 +1,14 @@
+﻿                ORG $3000
+                LD A,$B0     ;U3 RAM behozatala a 3.lapra,
+                LD ($3),A
+                #ifdef TVC
+				OUT ($2),A
+                LD HL,$3000
+                LD DE,$C000
+                LD BC,$14
+                LDIR          ;Program átmásolása $3000-tól $C000-ra,
+				#endif
+                LD A,$70
+                LD ($3),A
+                OUT ($2),A
+                END

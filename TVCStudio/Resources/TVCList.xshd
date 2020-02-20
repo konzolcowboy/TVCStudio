@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SyntaxDefinition name="TVCList" extensions=".lst" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Green"/>
+	<Color name="String" foreground="Red"/>
+	<Color name="Char" foreground="Magenta"/>
+	<Color name="ProcessorInstructions" foreground="Teal" fontWeight="bold"/>
+	<Color name="AssemblerInstructions" foreground="Olive" fontWeight="bold"/>
+	<Color name="HexaConstans" foreground="Blue"/>
+	<Color name="HexaConstans2" foreground="Red"/>
+
+	<!-- This is the main ruleset. -->
+	<RuleSet ignoreCase="true">
+		<Span color="Comment" begin=";" multiline="false" />
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+		</Span>
+		<Span color="Char">
+			<Begin>'</Begin>
+			<End>'</End>
+		</Span>
+		<Keywords color="ProcessorInstructions">
+			<Word>LD</Word>
+			<Word>LDIR</Word>
+			<Word>LDDR</Word>
+			<Word>LDI</Word>
+			<Word>LDD</Word>
+			<Word>ADC</Word>
+			<Word>ADD</Word>
+			<Word>SBC</Word>
+			<Word>SUB</Word>
+			<Word>INC</Word>
+			<Word>DEC</Word>
+			<Word>AND</Word>
+			<Word>OR</Word>
+			<Word>XOR</Word>
+			<Word>NEG</Word>
+			<Word>CPL</Word>
+			<Word>CP</Word>
+			<Word>CPD</Word>
+			<Word>CPI</Word>
+			<Word>CPDR</Word>
+			<Word>CPIR</Word>
+			<Word>DAA</Word>
+			<Word>BIT</Word>
+			<Word>SET</Word>
+			<Word>RES</Word>
+			<Word>SLA</Word>
+			<Word>SRA</Word>
+			<Word>SRL</Word>
+			<Word>RL</Word>
+			<Word>RLC</Word>
+			<Word>RR</Word>
+			<Word>RRC</Word>
+			<Word>RLA</Word>
+			<Word>RLCA</Word>
+			<Word>RRA</Word>
+			<Word>RRCA</Word>
+			<Word>RLD</Word>
+			<Word>RRD</Word>
+			<Word>CCF</Word>
+			<Word>SCF</Word>
+			<Word>IN</Word>
+			<Word>OUT</Word>
+			<Word>IND</Word>
+			<Word>INDR</Word>
+			<Word>INI</Word>
+			<Word>INIR</Word>
+			<Word>OUTD</Word>
+			<Word>OTDR</Word>
+			<Word>OUTI</Word>
+			<Word>OTIR</Word>
+			<Word>CALL</Word>
+			<Word>RST</Word>
+			<Word>RET</Word>
+			<Word>RETI</Word>
+			<Word>RETN</Word>
+			<Word>PUSH</Word>
+			<Word>POP</Word>
+			<Word>EX</Word>
+			<Word>EXX</Word>
+			<Word>IM</Word>
+			<Word>DI</Word>
+			<Word>EI</Word>
+			<Word>HALT</Word>
+			<Word>NOP</Word>
+			<Word>JR</Word>
+			<Word>DJNZ</Word>
+			<Word>JP</Word>
+		</Keywords>
+		<Keywords color="AssemblerInstructions">
+			<Word>ORG</Word>
+			<Word>END</Word>
+			<Word>DS</Word>
+			<Word>DW</Word>
+			<Word>DB</Word>
+			<Word>EQU</Word>
+		</Keywords>
+		<Rule color="HexaConstans">\${1}[0-9A-F]{1,4}</Rule>
+		<Rule color="HexaConstans2">[0-9A-F]{1,4}</Rule>
+	</RuleSet>
+</SyntaxDefinition>

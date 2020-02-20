@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{95501EF9-C450-449C-B8F7-5C61B97EF8FB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TVCStudio</RootNamespace>
+    <AssemblyName>TVCStudio</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\ADATOK\Workspace\TVCStudio\Deployment\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>EB3EB91A1CEB3EFF53A494D3ABDAC463E5334892</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TVCStudio_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>tvc64.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\packages\AvalonEdit.6.0.0\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Settings\AssemblyEditorSettings.cs" />
+    <Compile Include="Settings\BasicEditorSettings.cs" />
+    <Compile Include="Settings\TvcStudioColor.cs" />
+    <Compile Include="Settings\TvcStudioSettings.cs" />
+    <Compile Include="SourceCodeHandling\AssemblyCodeAnalyzer.cs" />
+    <Compile Include="SourceCodeHandling\AssemblyCodeFolding.cs" />
+    <Compile Include="SourceCodeHandling\AssemblyCodeFormatter.cs" />
+    <Compile Include="SourceCodeHandling\AssemblyIndentationStrategy.cs" />
+    <Compile Include="Settings\AssemblyIndentationSettings.cs" />
+    <Compile Include="SourceCodeHandling\BasicCodeAnalyzer.cs" />
+    <Compile Include="SourceCodeHandling\BasicCodeFolding.cs" />
+    <Compile Include="SourceCodeHandling\ClockCycleMargin.cs" />
+    <Compile Include="SourceCodeHandling\CodeAnalyzer.cs" />
+    <Compile Include="SourceCodeHandling\CodeFolding.cs" />
+    <Compile Include="SourceCodeHandling\ITextMarker.cs" />
+    <Compile Include="SourceCodeHandling\ITextMarkerService.cs" />
+    <Compile Include="SourceCodeHandling\Search\HunLocalization.cs" />
+    <Compile Include="SourceCodeHandling\TextMarker.cs" />
+    <Compile Include="SourceCodeHandling\TextMarkerService.cs" />
+    <Compile Include="SourceCodeHandling\CodeIntellisense.cs" />
+    <Compile Include="ViewModels\Document\AssemblyDocumentViewModel.cs" />
+    <Compile Include="ViewModels\Document\BasicDocumentViewModel.cs" />
+    <Compile Include="ViewModels\Document\ReadOnlyDocumentViewModel.cs" />
+    <Compile Include="ViewModels\FindAndReplaceViewModel.cs" />
+    <Compile Include="ViewModels\Program\AssemblyProgramViewModel.cs" />
+    <Compile Include="ViewModels\Program\BasicProgramViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Views\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BasicDocumentView.xaml.cs">
+      <DependentUpon>BasicDocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FindAndReplace.xaml.cs">
+      <DependentUpon>FindAndReplace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgramView.xaml.cs">
+      <DependentUpon>ProgramView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReadOnlyDocumentView.xaml.cs">
+      <DependentUpon>ReadOnlyDocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BasicDocumentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AssemblyDocumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FindAndReplace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Constans.cs" />
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Trace\ITraceClient.cs" />
+    <Compile Include="Trace\TraceEngine.cs" />
+    <Compile Include="Trace\TraceMessage.cs" />
+    <Compile Include="ViewModels\Document\DocumentViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Program\ProgramViewModel.cs" />
+    <Compile Include="ViewModels\DocumentHandler.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\AssemblyDocumentView.xaml.cs">
+      <DependentUpon>AssemblyDocumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\ProgramView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReadOnlyDocumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Resource Include="Views\Images\QuickSearch.png" />
+    <Resource Include="Views\Images\FindAndReplace.png" />
+    <Resource Include="Views\Images\Settings.png" />
+    <Resource Include="Olvassel.txt" />
+    <Resource Include="Views\Images\about.png" />
+    <Resource Include="Views\Images\help.png" />
+    <None Include="Help\Contents.hhc" />
+    <None Include="Help\Help.hhp" />
+    <None Include="Help\Index.hhk" />
+    <Content Include="Help\TVCStudio.chm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Resources\TVCAssembly.xshd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TVCBasic.xshd" />
+    <EmbeddedResource Include="Resources\TVCList.xshd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Copy.png" />
+    <Resource Include="Views\Images\Cut.png" />
+    <Resource Include="Views\Images\Delete.png" />
+    <Resource Include="Views\Images\Open.png" />
+    <Resource Include="Views\Images\Paste.png" />
+    <Resource Include="Views\Images\Redo.png" />
+    <Resource Include="Views\Images\Save.png" />
+    <Resource Include="Views\Images\Undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\PrgTypeAsm.png" />
+    <Resource Include="Views\Images\PrgTypeBas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Casette.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Run.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Lst.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\ProgramRemove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Build32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\IntellisenseAsm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\CPU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Assembler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\asm.png" />
+    <Resource Include="Views\Images\bas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\newprogram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\Start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\IntellisenseBas.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\puzzle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\minus.png" />
+    <Resource Include="Views\Images\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="de\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="es\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="fr\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="it\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="pt-BR\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="ro\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="ru\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+    <PublishFile Include="sv\Xceed.Wpf.AvalonDock.resources">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Satellite</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\tvc64.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="tvc64.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\eraser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Help\nevjegy.htm" />
+    <None Include="Help\z80assembler.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Help\assemblerinst.htm" />
+    <None Include="Help\tvcc.htm" />
+    <None Include="Help\tvcstudio.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TVC.Basic\TVC.Basic.csproj">
+      <Project>{16bc7939-e90c-4c39-8cb7-d00036a405b6}</Project>
+      <Name>TVC.Basic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TVC.Computer\TVC.Computer.csproj">
+      <Project>{af123670-797f-430b-bc13-312f9c3e2c81}</Project>
+      <Name>TVC.Computer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TVCTape\TVCTape.csproj">
+      <Project>{f6ab6359-4e0e-4fb9-b750-39b729e01c04}</Project>
+      <Name>TVCTape</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Z80.Kernel\Z80.Kernel.csproj">
+      <Project>{2ac1cc3b-d29a-48b1-af25-9cce3eb03c05}</Project>
+      <Name>Z80.Kernel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

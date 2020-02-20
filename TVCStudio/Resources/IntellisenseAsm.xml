@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeIntellisense>
+	<CompletionList>
+		<CompletionData>
+			<Text>LD</Text>
+			<DescriptionText>Adatmozgatás a cpu regiszterei,és a memória között.[LD cél,forrás]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LDD</Text>
+			<DescriptionText>Blokkos adatmozgatás két memória cím között a címek csökkentésével. [HL-forrás cím, DE- cél cím, BC-másolandó byteok száma]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LDI</Text>
+			<DescriptionText>Blokkos adatmozgatás két memória cím között a címek növelésével. [HL-forrás cím, DE- cél cím, BC-másolandó byteok száma]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LDDR</Text>
+			<DescriptionText>LDD utasítás ismétlése, míg BC értéke nem nulla. [HL-forrás cím, DE- cél cím, BC-másolandó byteok száma]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LDIR</Text>
+			<DescriptionText>LDI utasítás ismétlése, míg BC értéke nem nulla. [HL-forrás cím, DE- cél cím, BC-másolandó byteok száma]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ADC</Text>
+			<DescriptionText>Összeadás a carry bittel. [8 bit esetén az eredmény az A regiszterben, 16 bit estén a HL, IX, IY regiszterekben] </DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ADD</Text>
+			<DescriptionText>Összeadás.[8 bit esetén az eredmény és a forrásegyaránt az A regiszter, 16 bit estén a HL, IX, IY regiszterekben] </DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SBC</Text>
+			<DescriptionText>Kivonás a círry bittel. [8 bit esetén az eredmény és a forrásegyaránt az A regiszter, 16 bit estén a HL, IX, IY regiszterekben] </DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SUB</Text>
+			<DescriptionText>Kivonás. [8 bit esetén az eredmény és a forrásegyaránt az A regiszter, 16 bit estén a HL, IX, IY regiszterekben] </DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INC</Text>
+			<DescriptionText>Eggyel növeli a megadott regiszter, vagy memória rekesz tartalmát.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DEC</Text>
+			<DescriptionText>Eggyel csökkenti a megadott regiszter, vagy memória rekesz tartalmát.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>AND</Text>
+			<DescriptionText>Bitenkénti 'ÉS' művelet végrehajtása az operanduson.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OR</Text>
+			<DescriptionText>Bitenkénti 'VAGY' művelet végrehajtása az operanduson.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>XOR</Text>
+			<DescriptionText>Bitenkénti 'KIZÁRÓ VAGY' művelet végrehajtása az operanduson.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>NEG</Text>
+			<DescriptionText>Az A regiszter értékének előállítja a mínusz egyszeresét.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CPL</Text>
+			<DescriptionText>Az A regiszter mindegyik bitjét megfordítja.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CP</Text>
+			<DescriptionText>Az A regiszter tartalmát hasonlítja össze a megadott operandussal.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CPD</Text>
+			<DescriptionText>Memória rekeszek összehasonlítása az A regiszterrel a címek csökkentésével.[HL-összehasonlítandó cím, BC-számláló.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CPI</Text>
+			<DescriptionText>Memória rekeszek összehasonlítása az A regiszterrel a címek növelésével.[HL-összehasonlítandó cím, BC-számláló.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CPDR</Text>
+			<DescriptionText>CPD utasítás növelése míg BC értéke nem nulla.[HL-összehasonlítandó cím, BC-számláló.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CPIR</Text>
+			<DescriptionText>CPI utasítás növelése míg BC értéke nem nulla.[HL-összehasonlítandó cím, BC-számláló.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DAA</Text>
+			<DescriptionText>Az A regiszter értékét alakítja kétjegyű tizes számrendszer beli számmá.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>BIT</Text>
+			<DescriptionText>Bitek vizsgálatát teszi lehetővé.[BIT r,b r:regiszter vagy memória rekesz, b: bit száma 0-7 között.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SET</Text>
+			<DescriptionText>A megadott bitet beállítja.[SET r,b r:regiszter vagy memória rekesz, b: bit száma 0-7 között.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RES</Text>
+			<DescriptionText>A megadott bitet törli.[RES r,b r:regiszter vagy memória rekesz, b: bit száma 0-7 között.]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SLA</Text>
+			<DescriptionText>Aritmetikai bit eltolás balra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SRA</Text>
+			<DescriptionText>Aritmetikai bit eltolás jobbra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SRL</Text>
+			<DescriptionText>Logikai bit eltolás balra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+	  <CompletionData>
+	    <Text>SLL</Text>
+	    <DescriptionText>Logikai bit eltolás balra. A kilépő bit a carry flag-be kerül, és a 7.bit értéke egy lesz.</DescriptionText>
+	    <InstructionType>Processor</InstructionType>
+	  </CompletionData>
+		<CompletionData>
+			<Text>RL</Text>
+			<DescriptionText>Operandus bitjének forgatása a CARRY jelző biten át balra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RLC</Text>
+			<DescriptionText>Operandus bitjének forgatása balra. A 7. bit a CARRY-be is beíródik.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RR</Text>
+			<DescriptionText>Operandus bitjének forgatása a CARRY jelző biten át jobbra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RRC</Text>
+			<DescriptionText>Operandus bitjének forgatása jobbra. A 0. bit a CARRY-be is beíródik.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RLA</Text>
+			<DescriptionText>Az A regiszter bitjének forgatása a CARRY jelző biten át balra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RLCA</Text>
+			<DescriptionText>Az A regiszter bitjének forgatása balra. A 7. bit a CARRY-be is beíródik.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RRA</Text>
+			<DescriptionText>Az A regiszter bitjének forgatása a CARRY jelző biten át jobbra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RRCA</Text>
+			<DescriptionText>Az A regiszter bitjének forgatása jobbra. A 0. bit a CARRY-be is beíródik.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RLD</Text>
+			<DescriptionText>HL által mutatott memória rekesz bitcsoportjainak forgatása az A regiszter használatával balra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RRD</Text>
+			<DescriptionText>HL által mutatott memória rekesz bitcsoportjainak forgatása az A regiszter használatával jobbra.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CCF</Text>
+			<DescriptionText>CARRY flag komplementálása.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SCF</Text>
+			<DescriptionText>CARRY flag beállítása.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>IN</Text>
+			<DescriptionText>Adat beolvasása portól. [IN r,p r:regiszter, p: port sorszáma]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OUT</Text>
+			<DescriptionText>Adat kiküldése a megadott portra. [OUT r,p r:regiszter, p: port sorszáma]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>IND</Text>
+			<DescriptionText>Adat beolvasása a HL által mutatott rekeszbe a címek csökkentésével. [HL-memória cím, C-port sorszáma, B-számláló]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INDR</Text>
+			<DescriptionText>IND utasítás ismétlése, míg B regiszter értéke nem nulla.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INI</Text>
+			<DescriptionText>Adat beolvasása a HL által mutatott rekeszbe a címek növelésével. [HL-memória cím, C-port sorszáma, B-számláló]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INIR</Text>
+			<DescriptionText>INI utasítás ismétlése, míg B regiszter értéke nem nulla.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OUTD</Text>
+			<DescriptionText>Adat kiküldése a HL által mutatott rekeszből a címek csökkentésével. [HL-memória cím, C-port sorszáma, B-számláló]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OTDR</Text>
+			<DescriptionText>OUTD utasítás ismétlése, míg B regiszter értéke nem nulla.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OUTI</Text>
+			<DescriptionText>Adat kiküldése a HL által mutatott rekeszből a címek növelésével. [HL-memória cím, C-port sorszáma, B-számláló]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OTIR</Text>
+			<DescriptionText>OUTI utasítás ismétlése, míg B regiszter értéke nem nulla.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CALL</Text>
+			<DescriptionText>A program végrehajtása a megadott címen folytatódik.[CALL f,nnnn f: az ugrás feltétele (C,NC,Z,NZ,P,M,P0,PE)]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RST</Text>
+			<DescriptionText>A program végrehajtása az egy byte-on megadott címen folytatódik.[RST dd]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RET</Text>
+			<DescriptionText>Visszatérés a szubrutinból.[RET f f: a visszatérés feltétele (C,NC,Z,NZ,P,M,P0,PE)]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RETI</Text>
+			<DescriptionText>Visszatérés maszkolható megszakításból.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RETN</Text>
+			<DescriptionText>Visszatérés nem maszkolható megszakításból.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PUSH</Text>
+			<DescriptionText>Megadott regiszter értéke elhelyezése a verembe.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>POP</Text>
+			<DescriptionText>A verem legfelő értéke a megadott regiszterbe kerül.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EX</Text>
+			<DescriptionText>Adatcsere az operandusban megadott regiszterpárok között.[EX (SP),HL - EX (SP),IX - EX (SP),IY - EX AF,AF' - EX DE,HL]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>JP</Text>
+			<DescriptionText>Ugrás a megadott memória címre.[JP f,nnnn f: az ugrás feltétele (C,NC,Z,NZ,P,M,P0,PE)]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>JR</Text>
+			<DescriptionText>Ugrás a megadott relatív offset által mutatott utasításra.[JR f,nn f: az ugrás feltétele (C,NC,Z,NZ,P,M,P0,PE)]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DJNZ</Text>
+			<DescriptionText>Ha B értéke nem nulla, akkor ugrás a megadott relatív offset által mutatott utasításra.[DJNZ nn]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>IM</Text>
+			<DescriptionText>Az operandusban megadott megszakítási mód engedélyezése. [IM n n:0,1,2]</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DI</Text>
+			<DescriptionText>Megszakítások letitása.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EI</Text>
+			<DescriptionText>Megszakítások engedélyezése.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>HALT</Text>
+			<DescriptionText>Megállítja a processzor működését a következő beérkező megszakításig, vagy reset jelig.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EXX</Text>
+			<DescriptionText>A regiszterek értékének felcserélése a másodlagos regiszterkészlettel.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>NOP</Text>
+			<DescriptionText>Üres utasítás.</DescriptionText>
+			<InstructionType>Processor</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EQU</Text>
+			<DescriptionText>Konstans értéket rendel az utasítás előtt álló címkéhez. [cimke EQU $FF]</DescriptionText>
+			<InstructionType>Assembler</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ORG</Text>
+			<DescriptionText>A location counter értékét az operandusban megadott értékre állítja. A program kezdőcíme adható meg az utasítással.[ORG $3000]</DescriptionText>
+			<InstructionType>Assembler</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>END</Text>
+			<DescriptionText>A program végét jelöli. A program feldolgozása az utasításig tart.</DescriptionText>
+			<InstructionType>Assembler</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DS</Text>
+			<DescriptionText>Az utasítással buffert foglalhatunk a programban. Az első operandus a byte-ok száma, a második a byte értéke (opcionális). [cimke DS 15,$FF]</DescriptionText>
+			<InstructionType>Assembler</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DB</Text>
+			<DescriptionText>Az utasítással byte sorozatot helyezhetünk el a programban. [cimke DB 12,$FA,33 szoveg DB 'SZOVEG']</DescriptionText>
+			<InstructionType>Assembler</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DW</Text>
+			<DescriptionText>Az utasítással két byte-os szavakat helyezhetünk el a programban. Vesszővel elválasztva többet is megadhatunk. [cimke DW 1234,$FF05,3000]</DescriptionText>
+			<InstructionType>Assembler</InstructionType>
+		</CompletionData>
+	  <CompletionData>
+	    <Text>INCBIN</Text>
+	    <DescriptionText>Az utasítással bináris file-t, vagy annak egy részét tudjuk programunkba ágyazni.</DescriptionText>
+	    <InstructionType>Assembler</InstructionType>
+	  </CompletionData>
+    <CompletionData>
+      <Text>SQRT</Text>
+      <DescriptionText>A megadott paraméter négyzetgyökét adja vissza. Kifejezésekben használható.</DescriptionText>
+      <InstructionType>Assembler</InstructionType>
+    </CompletionData>
+    <CompletionData>
+      <Text>ABS</Text>
+      <DescriptionText>A megadott paraméter abszolult értékét adja vissza. Kifejezésekben használható.</DescriptionText>
+      <InstructionType>Assembler</InstructionType>
+    </CompletionData>
+    <CompletionData>
+      <Text>HIGH</Text>
+      <DescriptionText>A megadott 16 bites paraméter felső byte-ját adja vissza. Kifejezésekben használható.</DescriptionText>
+      <InstructionType>Assembler</InstructionType>
+    </CompletionData>
+	  <CompletionData>
+	    <Text>LOW</Text>
+	    <DescriptionText>A megadott 16 bites paraméter alsó byte-ját adja vissza. Kifejezésekben használható.</DescriptionText>
+	    <InstructionType>Assembler</InstructionType>
+	  </CompletionData>
+    <CompletionData>
+      <Text>INCLUDE</Text>
+      <DescriptionText>Az utasítással egy másik assembly file-t ágyazhatunk programunkba melynek tartalma a fordítás során a hívás helyére bemásolódik.</DescriptionText>
+      <InstructionType>PreProcessor</InstructionType>
+    </CompletionData>
+    <CompletionData>
+      <Text>DEFINE</Text>
+      <DescriptionText>Szimbólumot hoz létre feltételes fordításhoz, vagy szöveghelyettesítéshez.</DescriptionText>
+      <InstructionType>PreProcessor</InstructionType>
+    </CompletionData>
+    <CompletionData>
+      <Text>IFDEF</Text>
+      <DescriptionText>Igaz értékkel tér vissza, ha az operandusként megadott szimbólum előzőleg definiálva lett a '#DEFINE' utasítással. Feltételes fordítási blokk létrehozására alkalmas.</DescriptionText>
+      <InstructionType>PreProcessor</InstructionType>
+    </CompletionData>
+	  <CompletionData>
+	    <Text>IFNDEF</Text>
+	    <DescriptionText>Igaz értékkel tér vissza, ha az operandusként megadott szimbólum előzőleg nem lett definiálva a '#DEFINE' utasítással. Feltételes fordítási blokk létrehozására alkalmas.</DescriptionText>
+	    <InstructionType>PreProcessor</InstructionType>
+	  </CompletionData>
+	  <CompletionData>
+	    <Text>ELSE</Text>
+	    <DescriptionText>Az #IFDEF vagy #IFNDEF utasításokkal együtt használatos. Az utasítással megadott blokkot veszi figyelembe az valamelyik utasítás hamis értékkel tér vissza.</DescriptionText>
+	    <InstructionType>PreProcessor</InstructionType>
+	  </CompletionData>
+    <CompletionData>
+      <Text>ENDIF</Text>
+      <DescriptionText>Az #IFDEF vagy #IFNDEF utasításokkal megnyitott feltételes fordítási blokkot zárja le.</DescriptionText>
+      <InstructionType>PreProcessor</InstructionType>
+    </CompletionData>
+    <CompletionData>
+      <Text>MACRO</Text>
+      <DescriptionText>Az utasítással makrókat hozhatunk létre, melyek a hívás helyén a fordítás során kifejtődnek.</DescriptionText>
+      <InstructionType>PreProcessor</InstructionType>
+    </CompletionData>
+	  <CompletionData>
+	    <Text>ENDM</Text>
+	    <DescriptionText>A #MACRO utasítással létrehozott makró blokkot zárja le.</DescriptionText>
+	    <InstructionType>PreProcessor</InstructionType>
+	  </CompletionData>
+	  <CompletionData>
+	    <Text>UNDEF</Text>
+	    <DescriptionText>A #DEFINE utasítással létrehozott szimbólumot távolítja el a szimbólum listából.</DescriptionText>
+	    <InstructionType>PreProcessor</InstructionType>
+	  </CompletionData>
+  </CompletionList>
+</CodeIntellisense>

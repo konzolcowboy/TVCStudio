@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeIntellisense>
+	<CompletionList>
+		<CompletionData>
+			<Text>NEW</Text>
+			<DescriptionText>Törli az aktuális programot a memóriából.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RUN</Text>
+			<DescriptionText>Elindítja a betöltött programot. Ha megadunk sorszámot, akkor a program az adott sorszámtól indul.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LIST</Text>
+			<DescriptionText>Listát készít a képernyőre, vagy perifériára a sorszámmal megadott programrészletről.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LLIST</Text>
+			<DescriptionText>Listát készít a sorszámmal megadott programrészletől a nyomtatóra.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DELETE</Text>
+			<DescriptionText>Törli a programból a megadott sorszámú sorokat.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>TRACE</Text>
+			<DescriptionText>Ki, vagy bekapcsolja a program nyomkövetést [TRACE ON - bekapcsolja, TRACE OFF - kikapcsolja]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CONTINUE</Text>
+			<DescriptionText>Folytatja az előzőleg STOP paranccsal megállított program futását.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LET</Text>
+			<DescriptionText>Változónak adhatunk értéket az utasítással. [LET változó=kifejezés]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CLS</Text>
+			<DescriptionText>Törli a teljes képernyőt, a hátteret SET PAPER utasítással megadott színre festi.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PRINT</Text>
+			<DescriptionText>Adatok megjelenítését teszi lehetővé.[PRINT "HELLO" - PRINT AT 10,10 "HELLO"]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LPRINT</Text>
+			<DescriptionText>Funkctiója megegyezik a print parancséval, de alapból a nyomtatóra nyomtat.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INPUT</Text>
+			<DescriptionText>Adatok beolvasását teszi lehetővé a billentyűzetről, vagy file-ból.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INKEY$</Text>
+			<DescriptionText>A függvény a billentyűzeten utoljára leütött, de még be nem olvasott karaktert veszi fel.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>GET</Text>
+			<DescriptionText>Az OPEN-el megnyitott file-ból, vagy a kijejölt perifériáról olvas be egy karaktert.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>REM</Text>
+			<DescriptionText>Az utasítással megjegyzéseket helyezhetünk el a program tetszőleges pontján.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>IF</Text>
+			<DescriptionText>Feltételes utasítást vezet be. Az utasítás után egy logikai feltételt adhatunk meg. [IF A = 0]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>THEN</Text>
+			<DescriptionText>Ha az IF-ben megadott feltétel igaz, akkor a THEN utasítás után megadott utasításokat hajtja végre a BASIC.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ELSE</Text>
+			<DescriptionText>Ha az IF-ben megadott feltétel hamis, akkor az ELSE utasítás után megadott utasításokat hajtja végre a BASIC.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>FOR</Text>
+			<DescriptionText>Ciklus szervező utasítás. [FOR I = 1 TO 10]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>NEXT</Text>
+			<DescriptionText>A FOR ciklust a NEXT utasítás zárja le.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>STEP</Text>
+			<DescriptionText>A FOR ciklus lépésközének megadására szolgál. [FOR I = 1 TO 6 STEP 2]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DATA</Text>
+			<DescriptionText>Numerikus, vagy string konstansok elhelyezésére szolgál.[DATA 1,2,"hello"]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>READ</Text>
+			<DescriptionText>A DATA utasításokkal elhelyezett konstanokat a READ utasítással lehet sorban kiolvasni.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RESTORE</Text>
+			<DescriptionText>A READ utasítás által használt mutatót állítja vissza a legelső DATA utasítással definiált konstansra.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>STOP</Text>
+			<DescriptionText>Megszakítja a program futását, és a BASIC parancs módra vált.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>END</Text>
+			<DescriptionText>A BASIC program végét jelöli. Végrehajtása után a BASIC parancsmódba tér vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DIM</Text>
+			<DescriptionText>Tömböknek foglal helyet a memóriában. [DIM A(10) - 10 elemű tömböt deklarál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>GOTO</Text>
+			<DescriptionText>Feltétel nélküli ugrás a megadott sorszámú BASIC sorra.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>GOSUB</Text>
+			<DescriptionText>Ugrás a sorszámmal megadott szubrutinra.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RETURN</Text>
+			<DescriptionText>A szubrutin végét jelöli. Hatására a program végrehajtása az utoljára végrehajtott GOSUB utasítás után folytatódik.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ON</Text>
+			<DescriptionText>Feltételes ugrást tesz lehetővé. [ON logikai kifejezés GOTO sorszám1 ELSE sorszám2]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>GRAPHICS</Text>
+			<DescriptionText>A grafikus mód beállítására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PLOT</Text>
+			<DescriptionText>Pont rajzolása a megadott kordinátákra. [PLOT x,y]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SET</Text>
+			<DescriptionText>Rajzolási paraméterek megadására szolgál.[SET PALETTE - színpaletta beállítása SET INK rajzolási szín]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PALETTE</Text>
+			<DescriptionText>A SET utasítással együtt a szín paletta megadására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INK</Text>
+			<DescriptionText>A SET utasítással együtt a rajzolási szín megadására szolgál a PLOT utasítás számára.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PAPER</Text>
+			<DescriptionText>A SET utasítással együtt a háttér szín megadására szolgál a CLS utasítás számára.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>BORDER</Text>
+			<DescriptionText>A SET utasítással együtt a keret színének megadására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>STYLE</Text>
+			<DescriptionText>A SET utasítással együtt a vonal típus megadására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>MODE</Text>
+			<DescriptionText>A SET utasítással együtt két grafikus pont egymáshoz való viszonyát határozza meg.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CHARACTER</Text>
+			<DescriptionText>A SET utasítással együtt felhasználói karakter definiálását teszi lehetővé.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RATE</Text>
+			<DescriptionText>A SET utasítással együtt a billentyűzet auto-repeat funkcióját időzíti.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DELAY</Text>
+			<DescriptionText>A SET utasítással együtt a billentyűzet auto-repeat funkciójának késletetését állítja be.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DEF</Text>
+			<DescriptionText>Felhasználói program definiálására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SOUND</Text>
+			<DescriptionText>Hang előállítását teszi lehetővé.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PITCH</Text>
+			<DescriptionText>A SOUND utasítással együtt a hang magasságának beállítására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>VOLUME</Text>
+			<DescriptionText>A SOUND utasítással együtt a hang erősségének beállítására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DURATION</Text>
+			<DescriptionText>A SOUND utasítással együtt a hang időtartamának beállítására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OPEN</Text>
+			<DescriptionText>File megnyitására szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CLOSE</Text>
+			<DescriptionText>A korábban OPEN-el megnyitott file-t zárja le.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LOAD</Text>
+			<DescriptionText>Programot tölt be a memóriába.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SAVE</Text>
+			<DescriptionText>Programot ment ki a memóriából disk-re, vagy kazettára.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>VERIFY</Text>
+			<DescriptionText>A SAVE paranccsal kimentett program visszaellenőrzésére szolgál.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EXT</Text>
+			<DescriptionText>Egy felhasználói gépi kódú szubrutin hívását teszi lehetővé.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LOMEM</Text>
+			<DescriptionText>Az utasítás a program memória címét állítja át.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>OUT</Text>
+			<DescriptionText>Adatokat küldd ki egy megadott fizikai portra.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>POKE</Text>
+			<DescriptionText>Az utasítással a memória tetszőleges címére írhatunk</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ABS</Text>
+			<DescriptionText>A paraméter abszolult értékét számítja ki.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ATN</Text>
+			<DescriptionText>A kifejezés arcus-tangensét számítja ki.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>CHR$</Text>
+			<DescriptionText>A paraméterben megadott karakterkódhoz tartozó stringet adja meg.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>COS</Text>
+			<DescriptionText>A kifejezés koszinuszát számítja ki.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EXP</Text>
+			<DescriptionText>Az exponenciális konstanst a paraméterben megadott kitevőre emeli.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>FREE</Text>
+			<DescriptionText>A FREE hívása előtti, a programszámára még elérhető memória mennyiségét írja ki.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>IN</Text>
+			<DescriptionText>Adatok beolvasása a megadott fizikai portról.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>INT</Text>
+			<DescriptionText>A megadott paraméterhez legközelebb álló egész szám értékét adja vissza.[INT(-14.5) -15-öt eredményez]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LEN</Text>
+			<DescriptionText>A paraméterben megadott string karaktereinek számát adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>LOG</Text>
+			<DescriptionText>A megadott paraméter természetes logaritmusát adja meg.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ORD</Text>
+			<DescriptionText>A megadott string első karakterének ASCII kódját adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PEEK</Text>
+			<DescriptionText>A paraméterben megadott memória cím tartalmát adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>PI</Text>
+			<DescriptionText>A PI konstans értékét adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RANDOMIZE</Text>
+			<DescriptionText>A véletlenszám sorozat kezdőértékét állítja be.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RND</Text>
+			<DescriptionText>Véletlen számot generál a 0 és a paraméter -1 tartományban.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SIN</Text>
+			<DescriptionText>A megadott kifejezés szinuszát adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SGN</Text>
+			<DescriptionText>A kifejezés előjele alapján -1,0,+1 értékekkel tér vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>STR</Text>
+			<DescriptionText>A paraméterben megadott string nyomtatási képét adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>STRING</Text>
+			<DescriptionText>A paraméterben megadott karakter, megadott számú ismétlésével tér vissza. [STRING(5,"A"): 5db "A" lesz az eredmény.]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>SQR</Text>
+			<DescriptionText>A megadott paraméter négyzetgyökével tér vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>TAN</Text>
+			<DescriptionText>A megadott paraméter tangensével tér vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>USR</Text>
+			<DescriptionText>Felhasználói gépi kódú szubrutin indításátra szolgál.[USR(X,Y) X: a rutin memória címe, Y: értéke a HL regiszerpárba kerül.]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>VAL</Text>
+			<DescriptionText>A megadott string numerikus értékével tér vissza. [VAL("78") értéke 78 lesz.]</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>VARPTR</Text>
+			<DescriptionText>A megadott változó, vagy tömb elem memória beli címét adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>VERNUM</Text>
+			<DescriptionText>A BASIC azonosítószámát adja vissza.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>AUTO</Text>
+			<DescriptionText>Automatikus BASIC sorszámozást tesz lehetővé. [AUTO STEP növekmény, AT kezdősorszám.] (Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RENUMBER</Text>
+			<DescriptionText>A BASIC program újrasorszámozására szolgál.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>FKEY</Text>
+			<DescriptionText>A megadott feladat billentyű számhoz hozzá rendeli a megadott string kifejezést.[FKEY 0,"PRINT": a lock+0 megnyomására a "PRINT" írodik a képernyőre](Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>EXCEPTION</Text>
+			<DescriptionText>Az ON és GOTO utasításokkal hibakezelő rutin definiálására szolgál.[ON EXCEPTION GOTO sorszám.](Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ERRNUM</Text>
+			<DescriptionText>Az utoljára fellépő hiba kódját adja vissza.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ERRLIN</Text>
+			<DescriptionText>Annak a sornak a számát tartalmazza, amelyben az utolsó hiba fellépett.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>HEX</Text>
+			<DescriptionText>A megadott szám hexadecimális stringjével tér vissza.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>DEC</Text>
+			<DescriptionText>A megadott hexadecimális stringhez tartozó decimális értéket adja vissza.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>RECTANGLE</Text>
+			<DescriptionText>A PLOT utasítással együtt használva téglalap rajzolását teszi lehetővé.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>POLYGON</Text>
+			<DescriptionText>A PLOT utasítással együtt használva sokszög rajzolását teszi lehetővé.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>ELLIPSE</Text>
+			<DescriptionText>A PLOT utasítással együtt használva ellipszis rajzolását teszi lehetővé.(Csak TVC 64K+ gépeken működik.)</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>AT</Text>
+			<DescriptionText>A PRINT utasítással együtt használva a kiírt szöveg a megadott kordinátára kerül.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+		<CompletionData>
+			<Text>USING</Text>
+			<DescriptionText>A PRINT utasítással együtt használva a kiírt szöveg formátumát adja meg.</DescriptionText>
+			<InstructionType>Basic</InstructionType>
+		</CompletionData>
+	</CompletionList>
+</CodeIntellisense>

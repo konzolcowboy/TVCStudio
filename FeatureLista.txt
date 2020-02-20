@@ -1,0 +1,21 @@
+Assembler
+
+- Okosabb intellisence (Pl. Regiszter nevek, az adott utasítás operandusai)
+
+Basic
+- Automatikus sorszámozás (lehetõvé téve a sorok számozásának elhagyását, a hivatkozott sorok megjelölése címkével)
+
+TVCStudio
+
+- TVC karakter szerkesztõ
+- Projektek kezelése programok helyett.
+- Debug funkció támogatása
+
+
+Nagyobb fejlesztési tervek:
+
+- TVC Emulátor készítése
+- TVCStudio átnevezése Z80 stúdióra
+- Spectrum támogatás
+- Enterprise támogatás
+- HT, Primo támogatás

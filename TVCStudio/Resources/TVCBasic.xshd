@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SyntaxDefinition name="TVCBasic" extensions=".tvcbas" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="String" foreground="Red"/>
+	<Color name="BasicInstructions" foreground="Blue" fontWeight="bold"/>
+	<Color name="NumericConstans" foreground="Magenta"/>
+
+	<!-- This is the main ruleset. -->
+	<RuleSet ignoreCase="true">
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+		</Span>
+		<Rule color="NumericConstans">[0-9]{1,5}</Rule>
+		<Rule color="BasicInstructions">FOR</Rule>
+		<Rule color="BasicInstructions">POLYGON</Rule>
+		<Rule color="BasicInstructions">RECTANGLE</Rule>
+		<Rule color="BasicInstructions">ELLIPSE</Rule>
+		<Rule color="BasicInstructions">BORDER</Rule>
+		<Rule color="BasicInstructions">USING</Rule>
+		<Rule color="BasicInstructions">AT</Rule>
+		<Rule color="BasicInstructions">ATN</Rule>
+		<Rule color="BasicInstructions">XOR</Rule>
+		<Rule color="BasicInstructions">VOLUME</Rule>
+		<Rule color="BasicInstructions">TO</Rule>
+		<Rule color="BasicInstructions">THEN</Rule>
+		<Rule color="BasicInstructions">TAB</Rule>
+		<Rule color="BasicInstructions">STYLE</Rule>
+		<Rule color="BasicInstructions">STEP</Rule>
+		<Rule color="BasicInstructions">RATE</Rule>
+		<Rule color="BasicInstructions">PITCH</Rule>
+		<Rule color="BasicInstructions">PAPER</Rule>
+		<Rule color="BasicInstructions">PALETTE</Rule>
+		<Rule color="BasicInstructions">PAINT</Rule>
+		<Rule color="BasicInstructions">OR</Rule>
+		<Rule color="BasicInstructions">ORD</Rule>
+		<Rule color="BasicInstructions">OFF</Rule>
+		<Rule color="BasicInstructions">NOT</Rule>
+		<Rule color="BasicInstructions">MODE</Rule>
+		<Rule color="BasicInstructions">INK</Rule>
+		<Rule color="BasicInstructions">INKEY$</Rule>
+		<Rule color="BasicInstructions">DURATION</Rule>
+		<Rule color="BasicInstructions">DELAY</Rule>
+		<Rule color="BasicInstructions">CHARACTER</Rule>
+		<Rule color="BasicInstructions">AND</Rule>
+		<Rule color="BasicInstructions">EXCEPTION</Rule>
+		<Rule color="BasicInstructions">RENUMBER</Rule>
+		<Rule color="BasicInstructions">FKEY</Rule>
+		<Rule color="BasicInstructions">AUTO</Rule>
+		<Rule color="BasicInstructions">LPRINT</Rule>
+		<Rule color="BasicInstructions">EXT</Rule>
+		<Rule color="BasicInstructions">VERIFY</Rule>
+		<Rule color="BasicInstructions">TRACE</Rule>
+		<Rule color="BasicInstructions">STOP</Rule>
+		<Rule color="BasicInstructions">SOUND</Rule>
+		<Rule color="BasicInstructions">SET</Rule>
+		<Rule color="BasicInstructions">SAVE</Rule>
+		<Rule color="BasicInstructions">RUN</Rule>
+		<Rule color="BasicInstructions">RETURN</Rule>
+		<Rule color="BasicInstructions">RESTORE</Rule>
+		<Rule color="BasicInstructions">READ</Rule>
+		<Rule color="BasicInstructions">RANDOMIZE</Rule>
+		<Rule color="BasicInstructions">PRINT</Rule>
+		<Rule color="BasicInstructions">POKE</Rule>
+		<Rule color="BasicInstructions">PLOT</Rule>
+		<Rule color="BasicInstructions">OUT</Rule>
+		<Rule color="BasicInstructions">OUTPUT</Rule>
+		<Rule color="BasicInstructions">OPEN</Rule>
+		<Rule color="BasicInstructions">ON</Rule>
+		<Rule color="BasicInstructions">OK</Rule>
+		<Rule color="BasicInstructions">NEXT</Rule>
+		<Rule color="BasicInstructions">NEW</Rule>
+		<Rule color="BasicInstructions">LOMEM</Rule>
+		<Rule color="BasicInstructions">LOAD</Rule>
+		<Rule color="BasicInstructions">LLIST</Rule>
+		<Rule color="BasicInstructions">LIST</Rule>
+		<Rule color="BasicInstructions">LET</Rule>
+		<Rule color="BasicInstructions">INPUT</Rule>
+		<Rule color="BasicInstructions">IF</Rule>
+		<Rule color="BasicInstructions">GRAPHICS</Rule>
+		<Rule color="BasicInstructions">GOTO</Rule>
+		<Rule color="BasicInstructions">GOSUB</Rule>
+		<Rule color="BasicInstructions">GET</Rule>
+		<Rule color="BasicInstructions">END</Rule>
+		<Rule color="BasicInstructions">ELSE</Rule>
+		<Rule color="BasicInstructions">DIM</Rule>
+		<Rule color="BasicInstructions">DELETE</Rule>
+		<Rule color="BasicInstructions">DEF</Rule>
+		<Rule color="BasicInstructions">CONTINUE</Rule>
+		<Rule color="BasicInstructions">CLS</Rule>
+		<Rule color="BasicInstructions">CLOSE</Rule>
+		<Rule color="BasicInstructions">DATA</Rule>
+		<Rule color="BasicInstructions">REM</Rule>
+	</RuleSet>
+</SyntaxDefinition>
+

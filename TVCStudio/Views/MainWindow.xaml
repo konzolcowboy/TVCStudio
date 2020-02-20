@@ -1,0 +1,469 @@
+﻿<Window   x:Class="TVCStudio.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:dockctrl="clr-namespace:Xceed.Wpf.AvalonDock.Controls;assembly=Xceed.Wpf.AvalonDock"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:vm="clr-namespace:TVCStudio.ViewModels"
+        xmlns:views="clr-namespace:TVCStudio.Views"
+        xmlns:document="clr-namespace:TVCStudio.ViewModels.Document"
+        xmlns:program="clr-namespace:TVCStudio.ViewModels.Program"
+        mc:Ignorable="d"
+        Title="{Binding Title}" 
+          Top="{Binding Path=WindowTop, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+          Left="{Binding Path=WindowLeft, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+          WindowState="{Binding Path=WindowState, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+          Height="{Binding Path=WindowWidth, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+          Width="{Binding Path=WindowHeight, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+          WindowStartupLocation="CenterScreen" d:DataContext="{d:DesignInstance vm:MainViewModel }" 
+          Icon="Images/tvc64.jpg" 
+          Closing="Window_Closing">
+    <Window.InputBindings>
+        <KeyBinding Gesture="CTRL+S" Command="{Binding SaveProgramCommand}"></KeyBinding>
+        <KeyBinding Gesture="CTRL+O" Command="{Binding OpenProgramCommand}"></KeyBinding>
+        <KeyBinding Gesture="CTRL+K" Command="{Binding FormatCodeCommand}"></KeyBinding>
+        <KeyBinding Gesture="F9" Command="{Binding BuildProgramCommand}"></KeyBinding>
+        <KeyBinding Gesture="CTRL+N" Key="A" Command="{Binding CreateProgramCommand}" CommandParameter="ASM"></KeyBinding>
+        <KeyBinding Gesture="CTRL+N" Key="B" Command="{Binding CreateProgramCommand}" CommandParameter="BAS"></KeyBinding>
+        <KeyBinding Gesture="CTRL+H" Command="{Binding FindAndReplaceCommand}"></KeyBinding>
+    </Window.InputBindings>
+    <i:Interaction.Triggers>
+        <i:EventTrigger  EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding ApplicationCloseCommand}"  />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/newprogram.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Új" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem Command="{Binding CreateProgramCommand}" CommandParameter="BAS">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/bas.png" Height="16" Margin="0,0,10,0"/>
+                                <TextBlock Text="TVC Basic program (1.2/2.2)" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem.InputGestureText>CTRL+N,B</MenuItem.InputGestureText>
+                    </MenuItem>
+                    <MenuItem Command="{Binding CreateProgramCommand}" CommandParameter="ASM">
+                        <MenuItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="Images/asm.png" Height="16" Margin="0,0,10,0"/>
+                                <TextBlock Text="TVC Assembly program (Z80 assembler)" />
+                            </StackPanel>
+                        </MenuItem.Header>
+                        <MenuItem.InputGestureText>CTRL+N,A</MenuItem.InputGestureText>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Command="{Binding OpenProgramCommand}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Open.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Megnyitás" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem.InputGestureText>CTRL+O</MenuItem.InputGestureText>
+                </MenuItem>
+                <MenuItem Command="{Binding SaveProgramCommand}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Save.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding SaveCommandHeader}" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem.InputGestureText>CTRL+S</MenuItem.InputGestureText>
+                </MenuItem>
+                <MenuItem Command="{Binding ApplicationCloseCommand}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Exit.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Bezárás" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Szerkesztés">
+                <MenuItem Command="{Binding QuickSearchCommand}" InputGestureText="CTRL+F">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/QuickSearch.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Gyorskeresés" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding FindAndReplaceCommand}" InputGestureText="CTRL+H">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/FindAndReplace.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Keresés és csere" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="Undo">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Undo.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Visszavonás" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="Redo">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Redo.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Ismét" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="Cut">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Cut.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Kivágás" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="Copy">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Copy.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Másolás" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="Paste">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/Paste.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Beillesztés" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Súgó">
+                <MenuItem Command="{Binding HelpCommand}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/help.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Súgó" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding AboutCommand}">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/about.png" Height="16" Margin="0,0,10,0"/>
+                            <TextBlock Text="Névjegy" />
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBar Grid.Row="1" Background="#FFDEDFE0">
+            <ToolBar.Resources>
+                <Style TargetType="{x:Type Image}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type ButtonBase}, AncestorLevel=1}, Path=IsEnabled}" Value="False">
+                            <Setter Property="Opacity" Value="0.30" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ToolBar.Resources>
+            <Button Command="{Binding CreateProgramCommand}" CommandParameter="BAS">
+                <Button.ToolTip>
+                    <TextBlock Text="Új TVC Basic program (1.2/2.2)" />
+                </Button.ToolTip>
+                <Image Source="Images/bas.png" Height="16" />
+            </Button>
+            <Button Command="{Binding CreateProgramCommand}" CommandParameter="ASM">
+                <Button.ToolTip>
+                    <TextBlock Text="Új TVC Assembly program (Z80 assembler)" />
+                </Button.ToolTip>
+                <Image Source="Images/asm.png" Height="16" />
+            </Button>
+            <Button Command="{Binding OpenProgramCommand}">
+                <Button.ToolTip>
+                    <TextBlock Text="Megnyitás" />
+                </Button.ToolTip>
+                <Image Source="Images/Open.png" Height="16" />
+            </Button>
+            <Button Command="{Binding SaveProgramCommand}">
+                <Button.ToolTip>
+                    <TextBlock Text="{Binding SaveCommandHeader}" />
+                </Button.ToolTip>
+                <Image Source="Images/Save.png" Height="16"/>
+            </Button>
+            <Separator/>
+            <Button Command="Cut">
+                <Button.ToolTip>
+                    <TextBlock Text="Kivágás" />
+                </Button.ToolTip>
+                <Image Source="Images/Cut.png" Height="16"/>
+            </Button>
+            <Button Command="Copy">
+                <Button.ToolTip>
+                    <TextBlock Text="Másolás" />
+                </Button.ToolTip>
+                <Image Source="Images/Copy.png" Height="16"/>
+            </Button>
+            <Button Command="Paste">
+                <Button.ToolTip>
+                    <TextBlock Text="Beillesztés" />
+                </Button.ToolTip>
+                <Image Source="Images/Paste.png" Height="16"/>
+            </Button>
+            <Button Command="Delete">
+                <Button.ToolTip>
+                    <TextBlock Text="Kijelölt szöveg törlése" />
+                </Button.ToolTip>
+                <Image Source="Images/Delete.png" Height="16"/>
+            </Button>
+            <Separator/>
+            <Button Command="Undo">
+                <Button.ToolTip>
+                    <TextBlock Text="Visszavonás" />
+                </Button.ToolTip>
+                <Image Source="Images/Undo.png" Height="16"/>
+            </Button>
+            <Button Command="Redo">
+                <Button.ToolTip>
+                    <TextBlock Text="Ismét" />
+                </Button.ToolTip>
+                <Image Source="Images/Redo.png" Height="16"/>
+            </Button>
+            <Separator/>
+            <CheckBox IsChecked="{Binding Path=ActiveDocument.ShowLineNumbers, Mode=TwoWay}">
+                <CheckBox.ToolTip>
+                    <TextBlock Text="Sorok számának megjelenítése/elrejtése" />
+                </CheckBox.ToolTip>
+                <TextBlock Width="16" TextAlignment="Center">#</TextBlock>
+            </CheckBox>
+            <Button Command="{Binding Path=ActiveDocument.ExpandAllCommand}">
+                <Button.ToolTip>
+                    <TextBlock Text="Összes kibontása" />
+                </Button.ToolTip>
+                <Image Source="Images/plus.png" Height="16"/>
+            </Button>
+            <Button Command="{Binding Path=ActiveDocument.CollapseAllCommand}">
+                <Button.ToolTip>
+                    <TextBlock Text="Összes összecsukása" />
+                </Button.ToolTip>
+                <Image Source="Images/minus.png" Height="16"/>
+            </Button>
+            <Button Command="{Binding ClearOutPutCommand}">
+                <Button.ToolTip>
+                    <TextBlock Text="Kimenet törlése" />
+                </Button.ToolTip>
+                <Image Source="Images/eraser.png" Height="16"/>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding SettingsCommand}">
+                <Button.ToolTip>
+                    <TextBlock Text="Beállítások" />
+                </Button.ToolTip>
+                <Image Source="Images/Settings.png" Height="16"/>
+            </Button>
+            <Separator/>
+        </ToolBar>
+
+        <avalonDock:DockingManager Name="DockingManager" ActiveContent="{Binding Path=ActiveDocument,Mode=TwoWay}" Grid.Row="2"
+                             DocumentsSource="{Binding OpenedPrograms}">
+            <avalonDock:DockingManager.Theme>
+                <Binding Path="SelectedTheme" Mode="TwoWay"/>
+            </avalonDock:DockingManager.Theme>
+
+            <avalonDock:DockingManager.Resources>
+                <!-- add views for specific ViewModels -->
+                <DataTemplate DataType="{x:Type document:AssemblyDocumentViewModel}">
+                    <views:AssemblyDocumentView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type document:BasicDocumentViewModel}">
+                    <views:BasicDocumentView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type document:ReadOnlyDocumentViewModel}">
+                    <views:ReadOnlyDocumentView />
+                </DataTemplate>
+            </avalonDock:DockingManager.Resources>
+
+            <avalonDock:DockingManager.LayoutItemContainerStyle>
+                <!-- you can add additional bindings from the layoutitem to the DockWindowViewModel -->
+                <Style TargetType="{x:Type dockctrl:LayoutItem}" >
+                    <Setter Property="Title" Value="{Binding Model.Title}" />
+                    <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+                    <Setter Property="IsActive" Value="{Binding Model.IsActive,Mode=TwoWay}" />
+                    <Setter Property="ContentId" Value="{Binding Model.Title,Mode=TwoWay}" />
+                </Style>
+            </avalonDock:DockingManager.LayoutItemContainerStyle>
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel Orientation="Horizontal">
+                    <avalonDock:LayoutDocumentPane/>
+                    <avalonDock:LayoutAnchorablePane DockWidth="300">
+                        <avalonDock:LayoutAnchorable Title="Eddigi programok" CanHide="False" CanClose="False">
+                            <ListBox Name="RecentPrograms" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding SelectedProgram,Mode=TwoWay}"  d:DataContext="{d:DesignInstance program:ProgramViewModel }" ItemsSource="{Binding RecentPrograms}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDoubleClick">
+                                        <i:InvokeCommandAction Command="{Binding OpenProgramFromRecentListCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type program:ProgramViewModel}">
+                                        <views:ProgramView />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </avalonDock:LayoutAnchorable>
+                    </avalonDock:LayoutAnchorablePane>
+                </avalonDock:LayoutPanel>
+                <avalonDock:LayoutRoot.BottomSide>
+                    <avalonDock:LayoutAnchorSide>
+                        <avalonDock:LayoutAnchorGroup>
+                            <avalonDock:LayoutAnchorable x:Name="OutPut" Title="Kimenet" CanHide="False" CanClose="False">
+                                <TextBox x:Name="OutPutText" TextChanged="OutPutText_OnTextChanged"  VerticalScrollBarVisibility="Auto" IsReadOnly="True" Text="{Binding Mode=OneWay,Path=OutPut}" />
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorGroup>
+                    </avalonDock:LayoutAnchorSide>
+                </avalonDock:LayoutRoot.BottomSide>
+            </avalonDock:LayoutRoot>
+        </avalonDock:DockingManager>
+    </Grid>
+</Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

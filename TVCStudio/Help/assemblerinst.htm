@@ -1,0 +1,275 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1250">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:105%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:36.0pt;
+	line-height:105%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msotitlecxspfirst, li.msotitlecxspfirst, div.msotitlecxspfirst
+	{mso-style-name:msotitlecxspfirst;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msotitlecxspmiddle, li.msotitlecxspmiddle, div.msotitlecxspmiddle
+	{mso-style-name:msotitlecxspmiddle;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msotitlecxsplast, li.msotitlecxsplast, div.msotitlecxsplast
+	{mso-style-name:msotitlecxsplast;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:28.0pt;
+	font-family:"Calibri Light",sans-serif;
+	letter-spacing:-.5pt;}
+p.msolistparagraphcxspfirst, li.msolistparagraphcxspfirst, div.msolistparagraphcxspfirst
+	{mso-style-name:msolistparagraphcxspfirst;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:105%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msolistparagraphcxspmiddle, li.msolistparagraphcxspmiddle, div.msolistparagraphcxspmiddle
+	{mso-style-name:msolistparagraphcxspmiddle;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	line-height:105%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msolistparagraphcxsplast, li.msolistparagraphcxsplast, div.msolistparagraphcxsplast
+	{mso-style-name:msolistparagraphcxsplast;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:36.0pt;
+	line-height:105%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msopapdefault, li.msopapdefault, div.msopapdefault
+	{mso-style-name:msopapdefault;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:105%;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=HU>
+
+<div class=WordSection1>
+
+<p class=MsoTitle><span style='font-family:"Arial",sans-serif'>Az assembler
+által támogatott utasítások</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>ORG</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az ORG
+utasítással tudjuk az utasítás számláló értékét beállítani.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>ORG $3000</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A programban
+több ORG utasítás is elhelyezhető, így a program több szekcióra osztható. Az
+utasítás operandusa $0000 és $FFFFF közötti érték lehet vagy a .LC konstans,
+mely az utasítás számláló aktuális értékét tartalmazza.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Ha az utasítás
+elé címkét teszünk, akkor a címke értéke az utasításban megadott cím lesz.</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>END</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítással
+a program végét jelöljük. Az utasítás utáni sorokat az assembler nem veszi
+figyelembe.</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>DB (Define
+Byte)</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A DB
+utasítással egy vagy több byte-ot helyezhetünk el a programban az utasítás
+helyén.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DB $AB,123,$1D&nbsp;
+;Három byte-ot helyez el a memóriában.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>szoveg&nbsp; DB
+’Árvíztűrőtükörfúrógép’ ; A karakterláncnak megfelelő ASCII kódokat helyezi el
+a memóriában</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DB ’A’,’B’,’C’ ;A három
+karakternek megfelelő ASCII kódokat helyezi el a memóriában. Azonos a DB ’ABC’
+utasítással.</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>DW (Define
+Word)</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Hasonlatos a DB
+utasításhoz annyi különbséggel, hogy nem egy, hanem két byte-os értékeket
+helyez el a memóriában.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DW $ABFF,$ABCD,$0000</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>DS (Define
+Storage)</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítással
+a programban tárhelyet tudunk létrehozni.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>DB darabszám,
+érték</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>A darabszám
+operandussal tudjuk megadni, hogy az érték operandusból hány darabot szeretnénk
+elhelyezni a memóriában. Az érték operandus elhagyása automatikusan nullás byte
+értéket jelent.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DS 10 ;10 darab nulla
+értékű byte elhelyezése a memóriában. Azonos a DB 10,$00 vagy DB 10,0
+utasításokkal.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DS 5,$AB ;Az $AB értékű
+byte-ot 5-ször helyezi el a memóriában</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DS 10,’A’ ;Az ’A’
+karakternek megfelelő ASCII értéket 10-szer helyezi el a memóriában</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>DS 10,’ABC’ ;Az
+&nbsp;’ABC’ karakterláncnak megfelelő ASCII byte sorozatot 10-szer elhelyezi a
+memóriában</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>EQU</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítással
+értéket rendelhetünk címkéhez, melyet egyéb utasításokban használhatunk.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>VIDEOCIM EQU $ACFF</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>LD (VIDEOCIM),$2B</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az EQU utasítás
+helyett az egyenlőség jel is használható.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span style='font-family:"Arial",sans-serif'>INCBIN</span></b></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítással
+bináris állományt ágyazhatunk be az assembly programba.</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>INCBIN
+„filenév”,[startoffset],[mennyiség]</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítás
+első operandusa a file név, melyet idéző jelek között kötelező megadni. A
+második operandussal azt a byte offset-et adhatjuk meg, ahonnan a beágyazást
+kezdeni szeretnénk. Az offset értéke 0 és file hossz-1 értékig terjedhet. Ha a
+második operandust nem adjuk meg, akkor a teljes file beágyazásra kerül.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>Az utasítás
+harmadik operandusa szintén opcionális. A beágyazott byteok mennyiségét tudjuk
+vele megadni. Ha a harmadik operandust elhagyjuk, akkor a beágyazás a második
+operandusban megadott byte offset-től a file végéig tart.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>INCBIN „sprite.bin”,0,30
+; 30 byte beágyazása az első byte-től kezdve</span></p>
+
+<p class=MsoNormal><span style='font-family:Consolas'>INCBIN „sprite.bin”,40 ;
+Az első 40 byte beágyazása a sprite.bin fileból.</span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
