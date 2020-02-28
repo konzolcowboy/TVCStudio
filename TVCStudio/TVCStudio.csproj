@@ -145,6 +145,7 @@
     <Compile Include="Settings\AssemblyIndentationSettings.cs" />
     <Compile Include="SourceCodeHandling\BasicCodeAnalyzer.cs" />
     <Compile Include="SourceCodeHandling\BasicCodeFolding.cs" />
+    <Compile Include="SourceCodeHandling\BasicCodeRenumbering.cs" />
     <Compile Include="SourceCodeHandling\ClockCycleMargin.cs" />
     <Compile Include="SourceCodeHandling\CodeAnalyzer.cs" />
     <Compile Include="SourceCodeHandling\CodeFolding.cs" />

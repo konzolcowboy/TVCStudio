@@ -16,6 +16,7 @@ namespace TVCStudio.ViewModels.Document
             IsReadOny = false;
             CollapseAllCommand = new RelayCommand(o => { }, o => false);
             ExpandAllCommand = new RelayCommand(o => { }, o => false);
+            RenumberCodeCommand = new RelayCommand(RenumberCode);
         }
 
         public override ProgramViewModel Program { get; }
@@ -30,16 +31,63 @@ namespace TVCStudio.ViewModels.Document
             ApplyEditorStyle();
         }
 
+        public ICommand RenumberCodeCommand { get; }
+
         public override void FormatCode()
         {
-            
+
         }
+
+        public bool RemoveSpacesBeforeBuild
+        {
+            get => Settings.BasicEditorSettings.RemoveSpacesBeforeBuild;
+            set
+            {
+                if (Settings.BasicEditorSettings.RemoveSpacesBeforeBuild != value)
+                {
+                    Settings.BasicEditorSettings.RemoveSpacesBeforeBuild = value;
+                    OnPropertyChanged(nameof(RemoveSpacesBeforeBuild));
+                }
+            }
+        }
+
+        public int StartRowNumber
+        {
+            get => Settings.BasicEditorSettings.StartRowNumber;
+            set
+            {
+                if (Settings.BasicEditorSettings.StartRowNumber != value)
+                {
+                    Settings.BasicEditorSettings.StartRowNumber = value;
+                    OnPropertyChanged(nameof(StartRowNumber));
+                }
+            }
+        }
+
+        public int RowNumberIncrement
+        {
+            get => Settings.BasicEditorSettings.RowNumberIncrement;
+            set
+            {
+                if (Settings.BasicEditorSettings.RowNumberIncrement != value)
+                {
+                    Settings.BasicEditorSettings.RowNumberIncrement = value;
+                    OnPropertyChanged(nameof(RowNumberIncrement));
+                }
+            }
+        }
+
 
         protected override void TextAreaInitialized()
         {
             if (m_CodeAnalyzer == null)
             {
                 m_CodeAnalyzer = new BasicCodeAnalyzer(TextArea, Document, Settings);
+            }
+
+            if (m_BasicCodeRenumbering == null)
+            {
+                m_BasicCodeRenumbering = new BasicCodeRenumbering(Document, Settings);
             }
 
             OnSettingsChanged();
@@ -57,7 +105,7 @@ namespace TVCStudio.ViewModels.Document
         {
             if (char.IsLetter(enteredText[0]))
             {
-                if (CodeIntellisense.Basic.CompletionWindow == null)
+                if (CodeIntellisense.Basic.CompletionWindow == null && Settings.AutoIntellisence)
                 {
                     CodeIntellisense.Basic.Show(TextArea, m_CodeAnalyzer.InterpretedSymbols);
                 }
@@ -78,6 +126,12 @@ namespace TVCStudio.ViewModels.Document
             m_CodeAnalyzer.Dispose();
         }
 
+        private void RenumberCode(object obj)
+        {
+            m_BasicCodeRenumbering?.RenumberCode();
+        }
+
+
         private void ApplyEditorStyle()
         {
             Editor.Background = new SolidColorBrush(Settings.BasicEditorSettings.BackgroundColor.Color);
@@ -95,8 +149,15 @@ namespace TVCStudio.ViewModels.Document
 
             color = basicDefinition.GetNamedColor(ColorNames.NumericConstans);
             color.Foreground = new SimpleHighlightingBrush(Settings.BasicEditorSettings.NumberColor.Color);
+
+            color = basicDefinition.GetNamedColor(ColorNames.Comment);
+            color.Foreground = new SimpleHighlightingBrush(Settings.BasicEditorSettings.CommentColor.Color);
+
+            color = basicDefinition.GetNamedColor(ColorNames.UserMethods);
+            color.Foreground = new SimpleHighlightingBrush(Settings.BasicEditorSettings.UserMethodColor.Color);
         }
 
         private BasicCodeAnalyzer m_CodeAnalyzer;
+        private BasicCodeRenumbering m_BasicCodeRenumbering;
     }
 }

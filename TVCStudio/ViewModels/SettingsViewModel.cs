@@ -389,32 +389,6 @@ namespace TVCStudio.ViewModels
             }
         }
 
-        public bool AutoLineNumbering
-        {
-            get => Settings.BasicEditorSettings.AutoLineNumbering;
-            set
-            {
-                if (Settings.BasicEditorSettings.AutoLineNumbering != value)
-                {
-                    Settings.BasicEditorSettings.AutoLineNumbering = value;
-                    OnPropertyChanged(nameof(AutoLineNumbering));
-                }
-            }
-        }
-
-        public bool RemoveSpacesBeforeBuild
-        {
-            get => Settings.BasicEditorSettings.RemoveSpacesBeforeBuild;
-            set
-            {
-                if (Settings.BasicEditorSettings.RemoveSpacesBeforeBuild != value)
-                {
-                    Settings.BasicEditorSettings.RemoveSpacesBeforeBuild = value;
-                    OnPropertyChanged(nameof(RemoveSpacesBeforeBuild));
-                }
-            }
-        }
-
         public SolidColorBrush BasicBackgroundColor
         {
             get => m_BasicBackgroundColor;
@@ -485,28 +459,30 @@ namespace TVCStudio.ViewModels
             }
         }
 
-        public int StartRowNumber
+        public SolidColorBrush BasicCommentColor
         {
-            get => Settings.BasicEditorSettings.StartRowNumber;
+            get => m_BasicCommentColor;
             set
             {
-                if (Settings.BasicEditorSettings.StartRowNumber != value)
+                if (m_BasicCommentColor == null || !m_BasicCommentColor.Equals(value))
                 {
-                    Settings.BasicEditorSettings.StartRowNumber = value;
-                    OnPropertyChanged(nameof(StartRowNumber));
+                    m_BasicCommentColor = value;
+                    Settings.BasicEditorSettings.CommentColor.Color = m_BasicCommentColor.Color;
+                    OnPropertyChanged(nameof(BasicCommentColor));
                 }
             }
         }
 
-        public int RowNumberIncrement
+        public SolidColorBrush BasicUserMethodColor
         {
-            get => Settings.BasicEditorSettings.RowNumberIncrement;
+            get => m_BasicUserMethodColor;
             set
             {
-                if (Settings.BasicEditorSettings.RowNumberIncrement != value)
+                if (m_BasicUserMethodColor == null || !m_BasicUserMethodColor.Equals(value))
                 {
-                    Settings.BasicEditorSettings.RowNumberIncrement = value;
-                    OnPropertyChanged(nameof(RowNumberIncrement));
+                    m_BasicUserMethodColor = value;
+                    Settings.BasicEditorSettings.UserMethodColor.Color = m_BasicUserMethodColor.Color;
+                    OnPropertyChanged(nameof(BasicUserMethodColor));
                 }
             }
         }
@@ -677,10 +653,10 @@ namespace TVCStudio.ViewModels
                 .Select(c => c).First();
             BasicStringColor = Brushes.Where(b => b.Color.Equals(Settings.BasicEditorSettings.StringColor.Color))
                 .Select(c => c).First();
-
-            StartRowNumber = Settings.BasicEditorSettings.StartRowNumber;
-            RowNumberIncrement = Settings.BasicEditorSettings.RowNumberIncrement;
-            AutoLineNumbering = Settings.BasicEditorSettings.AutoLineNumbering;
+            BasicCommentColor = Brushes.Where(b => b.Color.Equals(Settings.BasicEditorSettings.CommentColor.Color))
+                .Select(c => c).First();
+            BasicUserMethodColor = Brushes.Where(b => b.Color.Equals(Settings.BasicEditorSettings.UserMethodColor.Color))
+                .Select(c => c).First();
 
             PreprocessorIndentSize = Settings.AssemblyIndentationSettings.PreprocessorIndentSize;
             AssemblyRowIndentSize = Settings.AssemblyIndentationSettings.AssemblyRowIndentSize;
@@ -716,6 +692,8 @@ namespace TVCStudio.ViewModels
         private SolidColorBrush m_BasicStringColor;
         private SolidColorBrush m_BasicKeywordColor;
         private SolidColorBrush m_BasicNumberColor;
+        private SolidColorBrush m_BasicCommentColor;
+        private SolidColorBrush m_BasicUserMethodColor;
         private FontFamily m_BasicEditorFontFamily;
         private SolidColorBrush m_ClockCycleColor;
         private SolidColorBrush m_RegisterColor;

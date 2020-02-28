@@ -6,7 +6,7 @@ namespace TVCStudio.ViewModels.Program
 {
     internal sealed class BasicProgramViewModel : ProgramViewModel
     {
-        public BasicProgramViewModel(string fullPath, DocumentHandler documentHandler, TvcStudioSettings settings) : base(fullPath, documentHandler,settings)
+        public BasicProgramViewModel(string fullPath, DocumentHandler documentHandler, TvcStudioSettings settings) : base(fullPath, documentHandler, settings)
         {
             ProgramType = ProgramType.Basic;
             OpenListFileCommand = new RelayCommand(o => { }, o => false);
@@ -18,7 +18,7 @@ namespace TVCStudio.ViewModels.Program
         {
             if (m_DocumentViewModel == null)
             {
-                m_DocumentViewModel = new BasicDocumentViewModel(ProgramFullPath, this,m_Settings);
+                m_DocumentViewModel = new BasicDocumentViewModel(ProgramFullPath, this, m_Settings);
                 m_DocumentViewModel.DocumentClosedEvent += OnDocumentClosed;
             }
 
@@ -34,7 +34,7 @@ namespace TVCStudio.ViewModels.Program
 
         protected override ProgramBuilder CreateProgramBuilder()
         {
-            return new BasicBuilder(BuildSettings);
+            return new BasicBuilder(BuildSettings, m_Settings.BasicEditorSettings.RemoveSpacesBeforeBuild);
         }
 
         private BasicDocumentViewModel m_DocumentViewModel;

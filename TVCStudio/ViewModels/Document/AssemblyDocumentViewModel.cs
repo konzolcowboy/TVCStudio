@@ -1,11 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
-using ICSharpCode.AvalonEdit.Rendering;
 using TVCStudio.Settings;
 using TVCStudio.SourceCodeHandling;
 using TVCStudio.ViewModels.Program;
@@ -25,6 +23,7 @@ namespace TVCStudio.ViewModels.Document
         public const string Expressions = @"Expressions";
         public const string BasicInstructions = @"BasicInstructions";
         public const string NumericConstans = @"NumericConstans";
+        public const string UserMethods = @"UserMethods";
         public const string RegisterColor = @"Registers";
     }
     internal sealed class AssemblyDocumentViewModel : DocumentViewModel

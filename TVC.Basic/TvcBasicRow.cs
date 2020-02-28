@@ -6,17 +6,41 @@ namespace TVC.Basic
 {
     public class TvcBasicRow
     {
-        public TvcBasicRow(string basicRowText)
+        public TvcBasicRow(string basicRowText, bool removeSpaces = false)
         {
-            RowText = basicRowText;
+            RowText = removeSpaces ? GetBasicRowTextWithoutSpaces(basicRowText) : basicRowText;
             ResolveRowNumber();
             TokenizeRow();
         }
 
         public const byte TvcBasicRowTerminator = 0xFF;
+
         public ushort RowNumber { get; private set; }
+
         public string RowText { get; }
+
         public byte[] TokenizedBytes { get; private set; }
+
+        private string GetBasicRowTextWithoutSpaces(string rowText)
+        {
+            string resultString = "";
+            bool inLiteral = false;
+            foreach (char  c in rowText)
+            {
+                if(c == '\"')
+                {
+                    inLiteral = !inLiteral;
+                }
+
+                // The spaces must not be removed from literals.
+                if(c != ' ' || (c ==' ' &&  inLiteral))
+                {
+                    resultString += c;
+                }
+            }
+
+            return resultString;
+        }
 
 
         private void ResolveRowNumber()
@@ -68,6 +92,47 @@ namespace TVC.Basic
             CharInDataOrCommentRow = 2
         }
 
+        private void FindToken(int currentCharIndex, out int lengthOfFoundToken, out byte tokenByte)
+        {
+            bool endOfSearch = false;
+            int lengthofSearch = 1;
+            lengthOfFoundToken = -1;
+            tokenByte = 0x00;
+
+            Dictionary<string, byte> filteredTokenDic = TvcBasicTokenLibrary.BasicTokens;
+            while (!endOfSearch && (currentCharIndex + lengthofSearch) <= RowText.Length)
+            {
+                string tokenStringForSearch = RowText.Substring(currentCharIndex, lengthofSearch++).ToUpper();
+                var tokens = filteredTokenDic
+                    .Where(kvp => kvp.Key.StartsWith(tokenStringForSearch, StringComparison.InvariantCultureIgnoreCase))
+                    .Select(kvp => kvp);
+                if (tokens.Count() == 1)
+                {
+                    KeyValuePair<string, byte> pair = tokens.First();
+                    if (pair.Key.Equals(tokenStringForSearch))
+                    {
+                        endOfSearch = true;
+                        lengthOfFoundToken = pair.Key.Length;
+                        tokenByte = pair.Value;
+                    }
+                }
+                else if (tokens.Count() > 1)
+                {
+                    KeyValuePair<string, byte> pair = tokens.FirstOrDefault(kvp => kvp.Key == tokenStringForSearch);
+                    if (pair.Key != null)
+                    {
+                        lengthOfFoundToken = pair.Key.Length;
+                        tokenByte = pair.Value;
+                    }
+                    filteredTokenDic = tokens.ToDictionary(kvp => kvp.Key, KeyValuePair => KeyValuePair.Value);
+                }
+                else
+                {
+                    endOfSearch = true;
+                }
+            }
+        }
+
         private void TokenizeRow()
         {
             if (string.IsNullOrEmpty(RowText))
@@ -86,36 +151,22 @@ namespace TVC.Basic
             {
                 char currentChar = RowText[currentCharIndex];
 
-                // The numers and spaces must not be tokenised. They appear with their ASCII code in tokenised Tvc basic Row
+                // The numbers and spaces must not be tokenised. They appear with their ASCII code in tokenised Tvc basic Row
                 if (charState == TokenizingState.CharMustTokenized && currentChar != ' ' && !char.IsNumber(currentChar))
                 {
-                    KeyValuePair<string, byte>? foundToken = null;
-
-                    //Detects if the current character can be part of a basic token
-                    foreach (KeyValuePair<string, byte> pair in TvcBasicTokenLibrary.BasicTokens
-                        .Where(kvp => RowText.Length - currentCharIndex >= kvp.Key.Length)
-                        .Select(kvp => kvp))
+                    FindToken(currentCharIndex, out int lengthOfFoundToken, out byte tokenByte);
+                    if (lengthOfFoundToken > 0)
                     {
-                        string tokenStringForSearch = RowText.Substring(currentCharIndex, pair.Key.Length).ToUpper();
-                        if (tokenStringForSearch == pair.Key)
-                        {
-                            foundToken = pair;
-                            break;
-                        }
-                    }
-
-                    if (foundToken.HasValue)
-                    {
-                        if (foundToken.Value.Value == 0xFC ||
-                            foundToken.Value.Value == 0xFE ||
-                            foundToken.Value.Value == 0xFB) 
+                        if (tokenByte == 0xFC ||
+                            tokenByte == 0xFE ||
+                            tokenByte == 0xFB)
                         {
                             // If the found token is 'DATA', '!', or 'REM', the following characters must not be tokenised
-                            charState  |= TokenizingState.CharInDataOrCommentRow;
+                            charState |= TokenizingState.CharInDataOrCommentRow;
                         }
 
-                        tokBytes.Add(foundToken.Value.Value);
-                        currentCharIndex += foundToken.Value.Key.Length;
+                        tokBytes.Add(tokenByte);
+                        currentCharIndex += lengthOfFoundToken;
                     }
                     else
                     {
@@ -135,8 +186,6 @@ namespace TVC.Basic
                     if (currentChar == '"')
                     {
                         charState ^= TokenizingState.CharInLiteral;
-                        //inLiteral = !inLiteral;
-                        //charMustTokenize = true;
                     }
                     if (currentChar == ':' && !charState.HasFlag(TokenizingState.CharInLiteral))
                     {

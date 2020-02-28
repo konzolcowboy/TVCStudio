@@ -5,9 +5,10 @@ namespace TVC.Computer
 {
     public class BasicBuilder : ProgramBuilder
     {
-        public BasicBuilder(BuilderSettings settings) : base(settings)
+        public BasicBuilder(BuilderSettings settings, bool removeSpaces = false) : base(settings)
         {
             m_TokenisedBytes = new List<byte>();
+            m_RemoveSpaces = removeSpaces;
         }
 
         public override void Build()
@@ -47,7 +48,7 @@ namespace TVC.Computer
                 {
                     if (!string.IsNullOrEmpty(programLine))
                     {
-                        var basicRow = new TvcBasicRow(programLine);
+                        var basicRow = new TvcBasicRow(programLine, m_RemoveSpaces);
                         m_TokenisedBytes.AddRange(basicRow.TokenizedBytes);
                     }
                 }
@@ -63,5 +64,6 @@ namespace TVC.Computer
         }
 
         private readonly List<byte> m_TokenisedBytes;
+        private readonly bool m_RemoveSpaces;
     }
 }

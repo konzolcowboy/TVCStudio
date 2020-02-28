@@ -156,6 +156,23 @@ namespace TVC.Basic.Test
         }
 
         [TestMethod]
+        public void SpacesAreRemovedFromBasicLine()
+        {
+            var basicRow = new TvcBasicRow(@"10 A=5 : if A<>5 then goto 5", true);
+
+            Assert.IsTrue(basicRow.RowText.Equals(@"10A=5:ifA<>5thengoto5"));
+        }
+
+        [TestMethod]
+        public void SpacesAreRemovedFromBasicLineButNotFromLiterals()
+        {
+            var basicRow = new TvcBasicRow("10 A=5 : if A=5 then print \"hello word of TVC\"", true);
+
+            Assert.IsTrue(basicRow.RowText.Equals("10A=5:ifA=5thenprint\"hello word of TVC\""));
+        }
+
+
+        [TestMethod]
         public void TokeniserThrowsForEmptyRow()
         {
             Assert.ThrowsException<TvcBasicException>(() =>

@@ -3,14 +3,31 @@
 	<Color name="String" foreground="Red"/>
 	<Color name="BasicInstructions" foreground="Blue" fontWeight="bold"/>
 	<Color name="NumericConstans" foreground="Magenta"/>
+  <Color name="Comment" foreground="Green"/>
+  <Color name="UserMethods" foreground="Teal" fontWeight="bold"/>
 
-	<!-- This is the main ruleset. -->
+
+  <!-- This is the main ruleset. -->
 	<RuleSet ignoreCase="true">
 		<Span color="String">
 			<Begin>"</Begin>
 			<End>"</End>
 		</Span>
-		<Rule color="NumericConstans">[0-9]{1,5}</Rule>
+    
+    <Span color="Comment">
+      <Begin>rem</Begin>
+      <End>:</End>
+    </Span>
+
+    <Span color="Comment">
+      <Begin>!</Begin>
+      <End>:</End>
+    </Span>
+
+    <Span color="Comment" begin="rem" multiline="false" />
+    <Span color="Comment" begin="!" multiline="false" />
+
+    <Rule color="NumericConstans">[0-9]{1,5}</Rule>
 		<Rule color="BasicInstructions">FOR</Rule>
 		<Rule color="BasicInstructions">POLYGON</Rule>
 		<Rule color="BasicInstructions">RECTANGLE</Rule>
@@ -31,13 +48,12 @@
 		<Rule color="BasicInstructions">PAPER</Rule>
 		<Rule color="BasicInstructions">PALETTE</Rule>
 		<Rule color="BasicInstructions">PAINT</Rule>
-		<Rule color="BasicInstructions">OR</Rule>
-		<Rule color="BasicInstructions">ORD</Rule>
-		<Rule color="BasicInstructions">OFF</Rule>
+    <Rule color="BasicInstructions">OR</Rule>
+    <Rule color="BasicInstructions">OFF</Rule>
 		<Rule color="BasicInstructions">NOT</Rule>
 		<Rule color="BasicInstructions">MODE</Rule>
-		<Rule color="BasicInstructions">INK</Rule>
-		<Rule color="BasicInstructions">INKEY$</Rule>
+    <Rule color="BasicInstructions">INKEY\$</Rule>
+    <Rule color="BasicInstructions">INK</Rule>
 		<Rule color="BasicInstructions">DURATION</Rule>
 		<Rule color="BasicInstructions">DELAY</Rule>
 		<Rule color="BasicInstructions">CHARACTER</Rule>
@@ -58,7 +74,6 @@
 		<Rule color="BasicInstructions">RETURN</Rule>
 		<Rule color="BasicInstructions">RESTORE</Rule>
 		<Rule color="BasicInstructions">READ</Rule>
-		<Rule color="BasicInstructions">RANDOMIZE</Rule>
 		<Rule color="BasicInstructions">PRINT</Rule>
 		<Rule color="BasicInstructions">POKE</Rule>
 		<Rule color="BasicInstructions">PLOT</Rule>
@@ -75,7 +90,8 @@
 		<Rule color="BasicInstructions">LIST</Rule>
 		<Rule color="BasicInstructions">LET</Rule>
 		<Rule color="BasicInstructions">INPUT</Rule>
-		<Rule color="BasicInstructions">IF</Rule>
+    <Rule color="BasicInstructions">PROMPT</Rule>
+    <Rule color="BasicInstructions">IF</Rule>
 		<Rule color="BasicInstructions">GRAPHICS</Rule>
 		<Rule color="BasicInstructions">GOTO</Rule>
 		<Rule color="BasicInstructions">GOSUB</Rule>
@@ -90,6 +106,35 @@
 		<Rule color="BasicInstructions">CLOSE</Rule>
 		<Rule color="BasicInstructions">DATA</Rule>
 		<Rule color="BasicInstructions">REM</Rule>
-	</RuleSet>
+    <Rule color="UserMethods">ABS</Rule>
+    <Rule color="UserMethods">ATN</Rule>
+    <Rule color="UserMethods">CHR\$</Rule>
+    <Rule color="UserMethods">COS</Rule>
+    <Rule color="UserMethods">EXP</Rule>
+    <Rule color="UserMethods">FREE</Rule>
+    <Rule color="UserMethods">IN</Rule>
+    <Rule color="UserMethods">INT</Rule>
+    <Rule color="UserMethods">LEN</Rule>
+    <Rule color="UserMethods">LOG</Rule>
+    <Rule color="UserMethods">ORD</Rule>
+    <Rule color="UserMethods">PEEK</Rule>
+    <Rule color="UserMethods">PI</Rule>
+    <Rule color="UserMethods">RND</Rule>
+    <Rule color="UserMethods">RANDOMIZE</Rule>
+    <Rule color="UserMethods">SIN</Rule>
+    <Rule color="UserMethods">SGN</Rule>
+    <Rule color="UserMethods">STR\$</Rule>
+    <Rule color="UserMethods">STRING\$</Rule>
+    <Rule color="UserMethods">SQR</Rule>
+    <Rule color="UserMethods">TAN</Rule>
+    <Rule color="UserMethods">USR</Rule>
+    <Rule color="UserMethods">VAL</Rule>
+    <Rule color="UserMethods">VARPTR</Rule>
+    <Rule color="UserMethods">VERNUM</Rule>
+    <Rule color="UserMethods">ERRNUM</Rule>
+    <Rule color="UserMethods">ERRLIN</Rule>
+    <Rule color="UserMethods">HEX\$</Rule>
+    <Rule color="UserMethods">DEC</Rule>
+  </RuleSet>
 </SyntaxDefinition>
 

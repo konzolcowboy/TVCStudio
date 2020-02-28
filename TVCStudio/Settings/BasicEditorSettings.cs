@@ -15,6 +15,8 @@ namespace TVCStudio.Settings
             KeywordColor = new TvcStudioColor(Colors.Blue);
             StringColor = new TvcStudioColor(Colors.Red);
             NumberColor = new TvcStudioColor(Colors.Magenta);
+            CommentColor = new TvcStudioColor(0xff, 0x00, 0x80, 0x00); //green
+            UserMethodColor = new TvcStudioColor(0xff, 0x00, 0x80, 0x80); // teal
             EditorFontName = "Consolas";
             EditorFontSize = 18;
         }
@@ -51,6 +53,12 @@ namespace TVCStudio.Settings
 
         [XmlElement]
         public int EditorFontSize { get; set; }
+
+        [XmlElement]
+        public TvcStudioColor CommentColor { get; set; }
+
+        [XmlElement]
+        public TvcStudioColor UserMethodColor { get; set; }
 
     }
 }

@@ -6,9 +6,32 @@
              mc:Ignorable="d"
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              xmlns:document="clr-namespace:TVCStudio.ViewModels.Document"
-             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance document:BasicDocumentViewModel }">
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             d:DesignHeight="306.977" d:DesignWidth="739.534" d:DataContext="{d:DesignInstance document:BasicDocumentViewModel }">
 
     <Grid>
-        <avalonEdit:TextEditor x:Name="CodeEditor" IsReadOnly="{Binding IsReadOny}" SyntaxHighlighting="{Binding SyntaxHighlighting}" ShowLineNumbers="{Binding ShowLineNumbers}" Document="{Binding Document}" FontFamily="Consolas" FontSize="18px" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="5 0 10 0" Text="Legelső kódsor száma:" FontSize="16" />
+            <xctk:IntegerUpDown Grid.Column="1" Minimum="1" Margin="0 0 10 0" Maximum="9999" Value="{Binding Path=StartRowNumber, Mode=TwoWay}" FontSize="16" />
+            <TextBlock Grid.Column="2" Margin="0 0 10 0" Text="Sornövekmény:" FontSize="16" />
+            <xctk:IntegerUpDown Grid.Column="3" Margin="0 0 5 0" Minimum="1" Maximum="9999" Value="{Binding Path=RowNumberIncrement, Mode=TwoWay}" />
+            <Button Grid.Column="4" HorizontalAlignment="Left" Command="{Binding RenumberCodeCommand}" FontSize="16">
+                <TextBlock Text="Újraszámozás" />
+            </Button>
+            <CheckBox Grid.Column="5" IsChecked="{Binding Path=RemoveSpacesBeforeBuild}" Margin="35,3,0,0" FontSize="16">Felesleges szóközök eltávolítása tokenizáláskor</CheckBox>
+        </Grid>
+        <avalonEdit:TextEditor Grid.Row="1" x:Name="CodeEditor" IsReadOnly="{Binding IsReadOny}" SyntaxHighlighting="{Binding SyntaxHighlighting}" ShowLineNumbers="{Binding ShowLineNumbers}" Document="{Binding Document}" FontFamily="Consolas" FontSize="18px" />
     </Grid>
 </UserControl>
