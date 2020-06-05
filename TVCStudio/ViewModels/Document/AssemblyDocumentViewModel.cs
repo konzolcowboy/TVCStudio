@@ -6,6 +6,7 @@ using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using TVCStudio.Settings;
 using TVCStudio.SourceCodeHandling;
+using TVCStudio.SourceCodeHandling.Assembly;
 using TVCStudio.ViewModels.Program;
 using Xceed.Wpf.AvalonDock.Themes;
 

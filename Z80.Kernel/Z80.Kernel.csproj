@@ -61,7 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Preprocessor\ConditionalGroupPreprocessor.cs" />
     <Compile Include="Preprocessor\PreprocessorConstans.cs" />
     <Compile Include="Preprocessor\DefinePreprocessor.cs" />
     <Compile Include="Preprocessor\IncludePreprocessor.cs" />

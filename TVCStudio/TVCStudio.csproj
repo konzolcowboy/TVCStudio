@@ -138,15 +138,15 @@
     <Compile Include="Settings\BasicEditorSettings.cs" />
     <Compile Include="Settings\TvcStudioColor.cs" />
     <Compile Include="Settings\TvcStudioSettings.cs" />
-    <Compile Include="SourceCodeHandling\AssemblyCodeAnalyzer.cs" />
-    <Compile Include="SourceCodeHandling\AssemblyCodeFolding.cs" />
-    <Compile Include="SourceCodeHandling\AssemblyCodeFormatter.cs" />
-    <Compile Include="SourceCodeHandling\AssemblyIndentationStrategy.cs" />
+    <Compile Include="SourceCodeHandling\Assembly\AssemblyCodeAnalyzer.cs" />
+    <Compile Include="SourceCodeHandling\Assembly\AssemblyCodeFolding.cs" />
+    <Compile Include="SourceCodeHandling\Assembly\AssemblyCodeFormatter.cs" />
+    <Compile Include="SourceCodeHandling\Assembly\AssemblyIndentationStrategy.cs" />
     <Compile Include="Settings\AssemblyIndentationSettings.cs" />
-    <Compile Include="SourceCodeHandling\BasicCodeAnalyzer.cs" />
-    <Compile Include="SourceCodeHandling\BasicCodeFolding.cs" />
-    <Compile Include="SourceCodeHandling\BasicCodeRenumbering.cs" />
-    <Compile Include="SourceCodeHandling\ClockCycleMargin.cs" />
+    <Compile Include="SourceCodeHandling\Basic\BasicCodeAnalyzer.cs" />
+    <Compile Include="SourceCodeHandling\Basic\BasicCodeFolding.cs" />
+    <Compile Include="SourceCodeHandling\Basic\BasicCodeHandler.cs" />
+    <Compile Include="SourceCodeHandling\Assembly\ClockCycleMargin.cs" />
     <Compile Include="SourceCodeHandling\CodeAnalyzer.cs" />
     <Compile Include="SourceCodeHandling\CodeFolding.cs" />
     <Compile Include="SourceCodeHandling\ITextMarker.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="SourceCodeHandling\TextMarker.cs" />
     <Compile Include="SourceCodeHandling\TextMarkerService.cs" />
     <Compile Include="SourceCodeHandling\CodeIntellisense.cs" />
+    <Compile Include="ViewModels\Converters\ComparisonConverter.cs" />
     <Compile Include="ViewModels\Document\AssemblyDocumentViewModel.cs" />
     <Compile Include="ViewModels\Document\BasicDocumentViewModel.cs" />
     <Compile Include="ViewModels\Document\ReadOnlyDocumentViewModel.cs" />
@@ -346,82 +347,82 @@
   <ItemGroup>
     <PublishFile Include="de\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="es\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="fr\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="it\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="pt-BR\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="ro\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="ru\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
     <PublishFile Include="sv\Xceed.Wpf.AvalonDock.resources">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Satellite</FileType>
     </PublishFile>
   </ItemGroup>

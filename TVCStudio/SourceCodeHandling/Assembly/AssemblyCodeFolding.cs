@@ -5,7 +5,7 @@ using ICSharpCode.AvalonEdit.Editing;
 using ICSharpCode.AvalonEdit.Folding;
 using Z80.Kernel.Preprocessor;
 
-namespace TVCStudio.SourceCodeHandling
+namespace TVCStudio.SourceCodeHandling.Assembly
 {
     internal sealed class AssemblyCodeFolding : CodeFolding
     {

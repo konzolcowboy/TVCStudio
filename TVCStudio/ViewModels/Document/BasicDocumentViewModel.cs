@@ -3,10 +3,17 @@ using System.Windows.Media;
 using ICSharpCode.AvalonEdit.Highlighting;
 using TVCStudio.Settings;
 using TVCStudio.SourceCodeHandling;
+using TVCStudio.SourceCodeHandling.Basic;
 using TVCStudio.ViewModels.Program;
 
 namespace TVCStudio.ViewModels.Document
 {
+    public enum BasicDocumentEditMode
+    {
+        UseRowNumbers,
+        UseLabels
+    }
+
     internal sealed class BasicDocumentViewModel : DocumentViewModel
     {
 
@@ -21,6 +28,21 @@ namespace TVCStudio.ViewModels.Document
 
         public override ProgramViewModel Program { get; }
 
+        public ICommand RenumberCodeCommand { get; }
+
+        public BasicDocumentEditMode EditMode
+        {
+            get => m_EditMode;
+            set
+            {
+                if (m_EditMode != value)
+                {
+                    m_EditMode = value;
+                    OnPropertyChanged(nameof(EditMode));
+                }
+            }
+        }
+
         public override void OnSettingsChanged()
         {
             if (!TextAreaLoaded)
@@ -30,8 +52,6 @@ namespace TVCStudio.ViewModels.Document
 
             ApplyEditorStyle();
         }
-
-        public ICommand RenumberCodeCommand { get; }
 
         public override void FormatCode()
         {
@@ -85,9 +105,9 @@ namespace TVCStudio.ViewModels.Document
                 m_CodeAnalyzer = new BasicCodeAnalyzer(TextArea, Document, Settings);
             }
 
-            if (m_BasicCodeRenumbering == null)
+            if (m_BasicCodeHandler == null)
             {
-                m_BasicCodeRenumbering = new BasicCodeRenumbering(Document, Settings);
+                m_BasicCodeHandler = new BasicCodeHandler(Document, Settings);
             }
 
             OnSettingsChanged();
@@ -128,7 +148,19 @@ namespace TVCStudio.ViewModels.Document
 
         private void RenumberCode(object obj)
         {
-            m_BasicCodeRenumbering?.RenumberCode();
+            m_BasicCodeHandler?.RenumberCode();
+        }
+
+        private void ChangeEditMode()
+        {
+            if(EditMode == BasicDocumentEditMode.UseRowNumbers)
+            {
+                m_BasicCodeHandler.UseRowNumbers();
+            }
+            else
+            {
+                m_BasicCodeHandler.UseLabels();
+            }
         }
 
 
@@ -158,6 +190,7 @@ namespace TVCStudio.ViewModels.Document
         }
 
         private BasicCodeAnalyzer m_CodeAnalyzer;
-        private BasicCodeRenumbering m_BasicCodeRenumbering;
+        private BasicCodeHandler m_BasicCodeHandler;
+        private BasicDocumentEditMode m_EditMode;
     }
 }

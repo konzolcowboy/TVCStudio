@@ -7,7 +7,7 @@ using ICSharpCode.AvalonEdit.Editing;
 using TVCStudio.Settings;
 using Z80.Kernel.Z80Assembler;
 
-namespace TVCStudio.SourceCodeHandling
+namespace TVCStudio.SourceCodeHandling.Assembly
 {
     internal sealed class AssemblyCodeAnalyzer : CodeAnalyzer
     {

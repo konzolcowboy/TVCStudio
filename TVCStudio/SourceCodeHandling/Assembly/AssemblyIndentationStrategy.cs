@@ -2,7 +2,7 @@
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Indentation;
 
-namespace TVCStudio.SourceCodeHandling
+namespace TVCStudio.SourceCodeHandling.Assembly
 {
     internal class AssemblyIndentationStrategy : IIndentationStrategy
     {

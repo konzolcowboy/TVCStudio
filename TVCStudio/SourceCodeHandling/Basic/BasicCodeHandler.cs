@@ -2,11 +2,11 @@
 using System.Text.RegularExpressions;
 using TVCStudio.Settings;
 
-namespace TVCStudio.SourceCodeHandling
+namespace TVCStudio.SourceCodeHandling.Basic
 {
-    internal class BasicCodeRenumbering
+    internal class BasicCodeHandler
     {
-        public BasicCodeRenumbering(TextDocument document, TvcStudioSettings settings)
+        public BasicCodeHandler(TextDocument document, TvcStudioSettings settings)
         {
             m_Document = document;
             m_Settings = settings;
@@ -22,7 +22,7 @@ namespace TVCStudio.SourceCodeHandling
                 string newRowNumberString = newRowNumber.ToString();
                 DocumentLine line = m_Document.GetLineByNumber(lineNumber);
                 string currentRowNumberString = ResolveRowNumber(m_Document.GetText(line.Offset, line.Length));
-                if(!string.IsNullOrEmpty(currentRowNumberString))
+                if (!string.IsNullOrEmpty(currentRowNumberString))
                 {
                     ReplaceRowNumberInJumpInstructions(currentRowNumberString, newRowNumberString);
                     line = m_Document.GetLineByNumber(lineNumber);
@@ -33,19 +33,27 @@ namespace TVCStudio.SourceCodeHandling
             }
 
             m_Document.EndUpdate();
+        }
 
+        public void UseRowNumbers()
+        {
+
+        }
+
+        public void UseLabels()
+        {
 
         }
 
         private void ReplaceRowNumberInJumpInstructions(string rowNumberString, string replaceFor)
         {
-            string regexThenElsePattern = $"THEN[ ]{{0,}}(?<rownumber>{rowNumberString})|ELSE[ ]{{0,}}(?<rownumber>{rowNumberString})|CONTINUE[ ]{{0,}}(?<rownumber>{rowNumberString})";
+            string regexPatternForInstructionsWithOneRowNumber = $"THEN[ ]{{0,}}(?<rownumber>{rowNumberString})|ELSE[ ]{{0,}}(?<rownumber>{rowNumberString})|CONTINUE[ ]{{0,}}(?<rownumber>{rowNumberString})|RUN[ ]{{0,}}(?<rownumber>{rowNumberString})";
             string gotoAndGosubpattern = @"(?<match>(?<token>(goto|gosub)[ ]{0,})(?<rownumber>([ ]{0,}[0-9]{1,4})|[ ]{0,}[,]{1}[ ]{0,}(\b[0-9]{1,4}))+)";
 
-            var regexForThenAndElse = new Regex(regexThenElsePattern, RegexOptions.IgnoreCase);
+            var regexForInstructionsWithOneRowNumber = new Regex(regexPatternForInstructionsWithOneRowNumber, RegexOptions.IgnoreCase);
 
             int offset = 0;
-            foreach (Match match in regexForThenAndElse.Matches(m_Document.Text))
+            foreach (Match match in regexForInstructionsWithOneRowNumber.Matches(m_Document.Text))
             {
                 m_Document.Replace(match.Groups["rownumber"].Index, match.Groups["rownumber"].Length, replaceFor);
                 offset += replaceFor.Length - match.Groups["rownumber"].Length;
@@ -69,7 +77,6 @@ namespace TVCStudio.SourceCodeHandling
             }
         }
 
-
         private string ResolveRowNumber(string inputline)
         {
             if (string.IsNullOrEmpty(inputline))
@@ -80,7 +87,7 @@ namespace TVCStudio.SourceCodeHandling
             string numberString = "";
             for (int i = 0; i < inputline.Length; i++)
             {
-                if (i == 0 && !char.IsNumber(inputline[i]))
+                if (i == 0 && !char.IsDigit(inputline[i]))
                 {
                     return string.Empty;
                 }
@@ -89,6 +96,7 @@ namespace TVCStudio.SourceCodeHandling
                 {
                     break;
                 }
+
                 numberString += inputline[i];
             }
 

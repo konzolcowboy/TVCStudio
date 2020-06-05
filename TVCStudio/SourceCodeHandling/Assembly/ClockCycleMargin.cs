@@ -9,7 +9,7 @@ using ICSharpCode.AvalonEdit.Rendering;
 using TVCStudio.Settings;
 using Z80.Kernel.Z80Assembler;
 
-namespace TVCStudio.SourceCodeHandling
+namespace TVCStudio.SourceCodeHandling.Assembly
 {
     internal class ClockCycleMargin : AbstractMargin, IDisposable
     {
@@ -31,8 +31,8 @@ namespace TVCStudio.SourceCodeHandling
                 if (m_Analyzer.InterPretedAssemblyRows != null)
                 {
                     var interpretedz80Instructions = m_Analyzer.InterPretedAssemblyRows
-                        .Where(ar=>ar.Instruction.Type == Z80.Kernel.Z80Assembler.InstructionType.ProcessorInstruction)
-                        .Select(ar=>ar);
+                        .Where(ar => ar.Instruction.Type == Z80.Kernel.Z80Assembler.InstructionType.ProcessorInstruction)
+                        .Select(ar => ar);
                     m_TextColor = new SolidColorBrush(m_Settings.AssemblyEditorSettings.ClockCycleColor.Color);
 
                     foreach (AssemblyRow assemblyRow in interpretedz80Instructions)

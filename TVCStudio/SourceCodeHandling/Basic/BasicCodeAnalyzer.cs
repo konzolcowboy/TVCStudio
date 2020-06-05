@@ -2,7 +2,7 @@
 using ICSharpCode.AvalonEdit.Editing;
 using TVCStudio.Settings;
 
-namespace TVCStudio.SourceCodeHandling
+namespace TVCStudio.SourceCodeHandling.Basic
 {
     internal sealed class BasicCodeAnalyzer : CodeAnalyzer
     {

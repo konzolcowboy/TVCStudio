@@ -7,6 +7,7 @@
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              xmlns:document="clr-namespace:TVCStudio.ViewModels.Document"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:converters="clr-namespace:TVCStudio.ViewModels.Converters"
              d:DesignHeight="306.977" d:DesignWidth="739.534" d:DataContext="{d:DesignInstance document:BasicDocumentViewModel }">
 
     <Grid>
@@ -14,24 +15,32 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid >
+        <Grid>
+            <Grid.Resources>
+                <converters:ComparisonConverter x:Key="comparsionConverter" />
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Margin="5 0 10 0" Text="Legelső kódsor száma:" FontSize="16" />
             <xctk:IntegerUpDown Grid.Column="1" Minimum="1" Margin="0 0 10 0" Maximum="9999" Value="{Binding Path=StartRowNumber, Mode=TwoWay}" FontSize="16" />
             <TextBlock Grid.Column="2" Margin="0 0 10 0" Text="Sornövekmény:" FontSize="16" />
-            <xctk:IntegerUpDown Grid.Column="3" Margin="0 0 5 0" Minimum="1" Maximum="9999" Value="{Binding Path=RowNumberIncrement, Mode=TwoWay}" />
-            <Button Grid.Column="4" HorizontalAlignment="Left" Command="{Binding RenumberCodeCommand}" FontSize="16">
-                <TextBlock Text="Újraszámozás" />
-            </Button>
-            <CheckBox Grid.Column="5" IsChecked="{Binding Path=RemoveSpacesBeforeBuild}" Margin="35,3,0,0" FontSize="16">Felesleges szóközök eltávolítása tokenizáláskor</CheckBox>
+            <xctk:IntegerUpDown FontSize="16" Grid.Column="3" Margin="0 0 5 0" Minimum="1" Maximum="9999" Value="{Binding Path=RowNumberIncrement, Mode=TwoWay}" />
+            <Button Grid.Column="4" HorizontalAlignment="Left" Command="{Binding RenumberCodeCommand}" FontSize="16">Sorok újraszámozása</Button>
+            <CheckBox Grid.Row="1" Grid.Column="4" IsChecked="{Binding Path=RemoveSpacesBeforeBuild}" Margin="0,7,0,0" FontSize="16">Felesleges szóközök eltávolítása tokenizáláskor</CheckBox>
+            <!--<Button IsEnabled="{Binding Path=EditMode,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource comparsionConverter}, ConverterParameter={x:Static document:BasicDocumentEditMode.UseLabels}}" Margin="0 5 10 5" FontSize="16" Grid.Row="1" Grid.Column="0">Sorszámok használata</Button>
+            <Button IsEnabled="{Binding Path=EditMode,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource comparsionConverter}, ConverterParameter={x:Static document:BasicDocumentEditMode.UseRowNumbers}}" Margin="0 5 0 5" FontSize="16" Grid.Row="1" Grid.Column="1">Cimkék használata</Button>-->
         </Grid>
-        <avalonEdit:TextEditor Grid.Row="1" x:Name="CodeEditor" IsReadOnly="{Binding IsReadOny}" SyntaxHighlighting="{Binding SyntaxHighlighting}" ShowLineNumbers="{Binding ShowLineNumbers}" Document="{Binding Document}" FontFamily="Consolas" FontSize="18px" />
+        <avalonEdit:TextEditor Grid.Row="2" x:Name="CodeEditor" IsReadOnly="{Binding IsReadOny}" SyntaxHighlighting="{Binding SyntaxHighlighting}" ShowLineNumbers="{Binding ShowLineNumbers}" Document="{Binding Document}" FontFamily="Consolas" FontSize="18px" />
     </Grid>
 </UserControl>
