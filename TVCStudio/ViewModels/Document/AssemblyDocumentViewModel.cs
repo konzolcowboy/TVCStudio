@@ -25,6 +25,7 @@ namespace TVCStudio.ViewModels.Document
         public const string BasicInstructions = @"BasicInstructions";
         public const string NumericConstans = @"NumericConstans";
         public const string UserMethods = @"UserMethods";
+        public const string RowSymbol = @"RowSymbol";
         public const string RegisterColor = @"Registers";
     }
     internal sealed class AssemblyDocumentViewModel : DocumentViewModel

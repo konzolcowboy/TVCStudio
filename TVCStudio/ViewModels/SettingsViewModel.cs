@@ -487,6 +487,20 @@ namespace TVCStudio.ViewModels
             }
         }
 
+        public SolidColorBrush BasicRowSymbolColor
+        {
+            get => m_BasicRowSymbolColor;
+            set
+            {
+                if (m_BasicRowSymbolColor == null || !m_BasicRowSymbolColor.Equals(value))
+                {
+                    m_BasicRowSymbolColor = value;
+                    Settings.BasicEditorSettings.RowSymbolColor.Color = m_BasicRowSymbolColor.Color;
+                    OnPropertyChanged(nameof(BasicRowSymbolColor));
+                }
+            }
+        }
+        
         public FontFamily BasicEditorFont
         {
             get => m_BasicEditorFontFamily;
@@ -658,6 +672,9 @@ namespace TVCStudio.ViewModels
             BasicUserMethodColor = Brushes.Where(b => b.Color.Equals(Settings.BasicEditorSettings.UserMethodColor.Color))
                 .Select(c => c).First();
 
+            BasicRowSymbolColor = Brushes.Where(b => b.Color.Equals(Settings.BasicEditorSettings.RowSymbolColor.Color))
+                .Select(c => c).First();
+            
             PreprocessorIndentSize = Settings.AssemblyIndentationSettings.PreprocessorIndentSize;
             AssemblyRowIndentSize = Settings.AssemblyIndentationSettings.AssemblyRowIndentSize;
             LabelSectionPaddingSize = Settings.AssemblyIndentationSettings.LabelSectionPaddingSize;
@@ -697,5 +714,6 @@ namespace TVCStudio.ViewModels
         private FontFamily m_BasicEditorFontFamily;
         private SolidColorBrush m_ClockCycleColor;
         private SolidColorBrush m_RegisterColor;
+        private SolidColorBrush m_BasicRowSymbolColor;
     }
 }

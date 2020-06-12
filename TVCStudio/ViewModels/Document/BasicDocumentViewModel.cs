@@ -1,6 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 using System.Windows.Media;
 using ICSharpCode.AvalonEdit.Highlighting;
+using TVC.Basic;
 using TVCStudio.Settings;
 using TVCStudio.SourceCodeHandling;
 using TVCStudio.SourceCodeHandling.Basic;
@@ -8,12 +11,6 @@ using TVCStudio.ViewModels.Program;
 
 namespace TVCStudio.ViewModels.Document
 {
-    public enum BasicDocumentEditMode
-    {
-        UseRowNumbers,
-        UseLabels
-    }
-
     internal sealed class BasicDocumentViewModel : DocumentViewModel
     {
 
@@ -26,19 +23,27 @@ namespace TVCStudio.ViewModels.Document
             RenumberCodeCommand = new RelayCommand(RenumberCode);
         }
 
+        private void Document_TextChanged(object sender, System.EventArgs e)
+        {
+            DetectSimplifiedCode();
+        }
+
         public override ProgramViewModel Program { get; }
 
         public ICommand RenumberCodeCommand { get; }
 
-        public BasicDocumentEditMode EditMode
+        public bool RenumberingAllowed => true; //!SimplifiedMode;
+
+        public bool SimplifiedMode
         {
-            get => m_EditMode;
+            get => m_SimplifiedMode;
             set
             {
-                if (m_EditMode != value)
+                if (m_SimplifiedMode != value)
                 {
-                    m_EditMode = value;
-                    OnPropertyChanged(nameof(EditMode));
+                    m_SimplifiedMode = value;
+                    OnPropertyChanged(nameof(SimplifiedMode));
+                    OnPropertyChanged(nameof(RenumberingAllowed));
                 }
             }
         }
@@ -105,16 +110,16 @@ namespace TVCStudio.ViewModels.Document
                 m_CodeAnalyzer = new BasicCodeAnalyzer(TextArea, Document, Settings);
             }
 
-            if (m_BasicCodeHandler == null)
-            {
-                m_BasicCodeHandler = new BasicCodeHandler(Document, Settings);
-            }
+            DetectSimplifiedCode();
+
+            Document.TextChanged += Document_TextChanged;
 
             OnSettingsChanged();
         }
 
         protected override void OnDocumentActivated()
         {
+            DetectSimplifiedCode();
         }
 
         protected override void OnDocumentDeactivated()
@@ -143,26 +148,29 @@ namespace TVCStudio.ViewModels.Document
 
         protected override void OnTextAreaUninitialized()
         {
+            Document.TextChanged -= Document_TextChanged;
             m_CodeAnalyzer.Dispose();
         }
 
+        private void DetectSimplifiedCode()
+        {
+            IEnumerable<string> basicRows = Document.Lines.Select(dl => Document.GetText(dl.Offset, dl.Length));
+            SimplifiedMode = BasicHelper.BasicCodeIsSimplified(basicRows);
+        }
+
+
         private void RenumberCode(object obj)
         {
-            m_BasicCodeHandler?.RenumberCode();
-        }
+            IEnumerable<string> basicRows = Document.Lines.Select(dl => Document.GetText(dl.Offset, dl.Length));
 
-        private void ChangeEditMode()
-        {
-            if(EditMode == BasicDocumentEditMode.UseRowNumbers)
-            {
-                m_BasicCodeHandler.UseRowNumbers();
-            }
-            else
-            {
-                m_BasicCodeHandler.UseLabels();
-            }
-        }
+            string renumberedBasicProgram = BasicHelper.RenumberBasicProgram(basicRows,
+                Settings.BasicEditorSettings.StartRowNumber,
+                Settings.BasicEditorSettings.RowNumberIncrement);
 
+            Document.BeginUpdate();
+            Document.Text = renumberedBasicProgram;
+            Document.EndUpdate();
+        }
 
         private void ApplyEditorStyle()
         {
@@ -187,10 +195,12 @@ namespace TVCStudio.ViewModels.Document
 
             color = basicDefinition.GetNamedColor(ColorNames.UserMethods);
             color.Foreground = new SimpleHighlightingBrush(Settings.BasicEditorSettings.UserMethodColor.Color);
+            
+            color = basicDefinition.GetNamedColor(ColorNames.RowSymbol);
+            color.Foreground = new SimpleHighlightingBrush(Settings.BasicEditorSettings.RowSymbolColor.Color);
         }
 
         private BasicCodeAnalyzer m_CodeAnalyzer;
-        private BasicCodeHandler m_BasicCodeHandler;
-        private BasicDocumentEditMode m_EditMode;
+        private bool m_SimplifiedMode;
     }
 }

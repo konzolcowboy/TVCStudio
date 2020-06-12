@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Windows.Data;
 using System.Windows.Input;
 using TVC.Computer;
 using TVCStudio.Settings;
 using TVCStudio.Trace;
 using TVCStudio.ViewModels.Document;
-using Z80.Kernel.Z80Assembler;
 
 namespace TVCStudio.ViewModels.Program
 {
@@ -27,36 +24,6 @@ namespace TVCStudio.ViewModels.Program
         NotFound
     }
 
-    public class AddressConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value != null)
-            {
-                return ((ushort)value).UshortToHexa();
-            }
-
-            return "$0000";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value != null)
-            {
-                string sValue = value.ToString();
-                try
-                {
-                    return sValue.ResolveUshortConstant();
-                }
-                catch (Z80AssemblerException)
-                {
-                    return 0;
-                }
-            }
-
-            return 0;
-        }
-    }
 
     public abstract class ProgramViewModel : ViewModelBase
     {

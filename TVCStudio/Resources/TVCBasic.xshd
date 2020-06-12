@@ -5,6 +5,7 @@
 	<Color name="NumericConstans" foreground="Magenta"/>
   <Color name="Comment" foreground="Green"/>
   <Color name="UserMethods" foreground="Teal" fontWeight="bold"/>
+  <Color name="RowSymbol" foreground="Gray" fontWeight="bold"/>
 
 
   <!-- This is the main ruleset. -->
@@ -135,6 +136,7 @@
     <Rule color="UserMethods">ERRLIN</Rule>
     <Rule color="UserMethods">HEX\$</Rule>
     <Rule color="UserMethods">DEC</Rule>
+    <Rule color="RowSymbol">\@(.*?)\@</Rule>
   </RuleSet>
 </SyntaxDefinition>
 

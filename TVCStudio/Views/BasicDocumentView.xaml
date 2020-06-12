@@ -7,7 +7,6 @@
              xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
              xmlns:document="clr-namespace:TVCStudio.ViewModels.Document"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:converters="clr-namespace:TVCStudio.ViewModels.Converters"
              d:DesignHeight="306.977" d:DesignWidth="739.534" d:DataContext="{d:DesignInstance document:BasicDocumentViewModel }">
 
     <Grid>
@@ -16,30 +15,60 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid>
-            <Grid.Resources>
-                <converters:ComparisonConverter x:Key="comparsionConverter" />
-            </Grid.Resources>
-
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Margin="5 0 10 0" Text="Legelső kódsor száma:" FontSize="16" />
-            <xctk:IntegerUpDown Grid.Column="1" Minimum="1" Margin="0 0 10 0" Maximum="9999" Value="{Binding Path=StartRowNumber, Mode=TwoWay}" FontSize="16" />
-            <TextBlock Grid.Column="2" Margin="0 0 10 0" Text="Sornövekmény:" FontSize="16" />
-            <xctk:IntegerUpDown FontSize="16" Grid.Column="3" Margin="0 0 5 0" Minimum="1" Maximum="9999" Value="{Binding Path=RowNumberIncrement, Mode=TwoWay}" />
-            <Button Grid.Column="4" HorizontalAlignment="Left" Command="{Binding RenumberCodeCommand}" FontSize="16">Sorok újraszámozása</Button>
-            <CheckBox Grid.Row="1" Grid.Column="4" IsChecked="{Binding Path=RemoveSpacesBeforeBuild}" Margin="0,7,0,0" FontSize="16">Felesleges szóközök eltávolítása tokenizáláskor</CheckBox>
-            <!--<Button IsEnabled="{Binding Path=EditMode,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource comparsionConverter}, ConverterParameter={x:Static document:BasicDocumentEditMode.UseLabels}}" Margin="0 5 10 5" FontSize="16" Grid.Row="1" Grid.Column="0">Sorszámok használata</Button>
-            <Button IsEnabled="{Binding Path=EditMode,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource comparsionConverter}, ConverterParameter={x:Static document:BasicDocumentEditMode.UseRowNumbers}}" Margin="0 5 0 5" FontSize="16" Grid.Row="1" Grid.Column="1">Cimkék használata</Button>-->
+            <StackPanel Margin="0 0 0 10" Orientation="Horizontal" Grid.Row="0">
+                <TextBlock Margin="5 0 10 0" Text="Legelső kódsor száma:" FontSize="16" />
+                <xctk:IntegerUpDown Minimum="1" Maximum="9999" Value="{Binding Path=StartRowNumber, Mode=TwoWay}" FontSize="16" />
+                <TextBlock Margin="5 0 10 0" Text="Sornövekmény:" FontSize="16" />
+                <xctk:IntegerUpDown FontSize="16" Minimum="1" Maximum="9999" Value="{Binding Path=RowNumberIncrement, Mode=TwoWay}" />
+                <Button Margin="5 0 0 0" IsEnabled="{Binding Path=RenumberingAllowed}" HorizontalAlignment="Left" Command="{Binding RenumberCodeCommand}" FontSize="16">Sorok újraszámozása</Button>
+            </StackPanel>
+            <StackPanel Margin="0 0 0 10" Grid.Row="1" Orientation="Horizontal">
+                <CheckBox Margin="5 0 0 0" IsChecked="{Binding Path=RemoveSpacesBeforeBuild}" FontSize="16" HorizontalAlignment="Right" Width="351">Felesleges szóközök eltávolítása tokenizáláskor</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Height" Value="0" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SimplifiedMode}" Value="true">
+                                <Setter Property="Height" Value="34" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <Image Margin="5 0 10 0" Source="Images/simplified.png" Width="32" Height="32">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=SimplifiedMode}" Value="true">
+                                    <Setter Property="Opacity" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <TextBlock Margin="5 5 0 0" Text="Egyszerűsített BASIC mód" FontSize="16" >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=SimplifiedMode}" Value="true">
+                                    <Setter Property="Opacity" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
         </Grid>
         <avalonEdit:TextEditor Grid.Row="2" x:Name="CodeEditor" IsReadOnly="{Binding IsReadOny}" SyntaxHighlighting="{Binding SyntaxHighlighting}" ShowLineNumbers="{Binding ShowLineNumbers}" Document="{Binding Document}" FontFamily="Consolas" FontSize="18px" />
     </Grid>

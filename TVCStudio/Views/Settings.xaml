@@ -235,6 +235,7 @@
                                                 <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Számok színe:</TextBlock>
                                                 <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Megjegyzések színe:</TextBlock>
                                                 <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Függvények színe:</TextBlock>
+                                                <TextBlock Margin="0,0,0,12" VerticalAlignment="Center">Cimkék színe:</TextBlock>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1">
                                                 <ComboBox Margin="0,12,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicBackgroundColor}" VerticalAlignment="Center">
@@ -280,6 +281,13 @@
                                                     </ComboBox.ItemTemplate>
                                                 </ComboBox>
                                                 <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicUserMethodColor}" VerticalAlignment="Center">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox Margin="0,0,0,5" ItemsSource="{Binding Brushes}" SelectedItem="{Binding BasicRowSymbolColor}" VerticalAlignment="Center">
                                                     <ComboBox.ItemTemplate>
                                                         <DataTemplate>
                                                             <TextBlock Background="{Binding}" Foreground="{Binding}" Text="{Binding}"/>
@@ -354,6 +362,17 @@
                                                     <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicCommentColor}">REM</TextBlock>
                                                     <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicCommentColor}" Text=" "></TextBlock>
                                                     <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicCommentColor}"> Belépés a gépi kódba</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicRowSymbolColor}">@kivonas@</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">PRINT</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">100</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicForegroundColor}">-</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicNumberColor}">50</TextBlock>
+                                                </WrapPanel>
+                                                <WrapPanel>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicKeywordColor}">GOTO</TextBlock>
+                                                    <TextBlock FontFamily="{Binding BasicEditorFont}" FontSize="{Binding BasicEditorFontSize}" Foreground="{Binding BasicRowSymbolColor}">@kivonas@</TextBlock>
                                                 </WrapPanel>
                                             </StackPanel>
                                         </Grid>

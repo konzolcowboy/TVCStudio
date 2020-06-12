@@ -18,6 +18,13 @@ namespace TVC.Computer
                 return;
             }
 
+            if (BasicHelper.BasicCodeIsSimplified(ProgramLines))
+            {
+                // TODO 
+                OnBuildMessageSent($"'{BuildSettings.ProgramPath}' egyszerűsített mód.");
+                OnBuildMessageSent($"'{BuildSettings.ProgramPath}' cimkék feloldása, és újraszámozás.");
+            }
+
             OnBuildMessageSent($"'{BuildSettings.ProgramPath}' tokenizálása.");
             if (!TokeniseBasicRows())
             {
@@ -62,7 +69,7 @@ namespace TVC.Computer
                 return false;
             }
         }
-
+        
         private readonly List<byte> m_TokenisedBytes;
         private readonly bool m_RemoveSpaces;
     }

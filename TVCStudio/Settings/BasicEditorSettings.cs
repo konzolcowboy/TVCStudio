@@ -17,6 +17,7 @@ namespace TVCStudio.Settings
             NumberColor = new TvcStudioColor(Colors.Magenta);
             CommentColor = new TvcStudioColor(0xff, 0x00, 0x80, 0x00); //green
             UserMethodColor = new TvcStudioColor(0xff, 0x00, 0x80, 0x80); // teal
+            RowSymbolColor = new TvcStudioColor(Colors.Gray);
             EditorFontName = "Consolas";
             EditorFontSize = 18;
         }
@@ -60,5 +61,7 @@ namespace TVCStudio.Settings
         [XmlElement]
         public TvcStudioColor UserMethodColor { get; set; }
 
+        [XmlElement]
+        public TvcStudioColor RowSymbolColor { get; set; }
     }
 }
