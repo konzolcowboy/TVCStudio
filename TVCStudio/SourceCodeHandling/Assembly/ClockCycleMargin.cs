@@ -48,7 +48,7 @@ namespace TVCStudio.SourceCodeHandling.Assembly
                                 new Typeface("")
                                 ,
                                 m_EmSize,
-                                m_TextColor);
+                                m_TextColor,1.25);
                             double y = line.GetTextLineVisualYPosition(line.TextLines[0], VisualYPosition.LineTop);
                             double x = line.GetTextLineVisualXPosition(line.TextLines[0],
                                 line.GetTextLineVisualStartColumn(line.TextLines[0]));
@@ -68,7 +68,7 @@ namespace TVCStudio.SourceCodeHandling.Assembly
                 new Typeface("")
                 ,
                 m_EmSize,
-                m_TextColor);
+                m_TextColor,1.25);
 
             return new Size(text.Width, 0);
         }

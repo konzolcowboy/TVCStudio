@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("evosoft")]
 [assembly: AssemblyProduct("TVC.Computer")]
-[assembly: AssemblyCopyright("Copyright © evosoft 2018")]
+[assembly: AssemblyCopyright("Copyright © evosoft 2018 - 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

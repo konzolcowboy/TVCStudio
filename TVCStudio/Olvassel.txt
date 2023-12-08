@@ -4,9 +4,9 @@ Támogatott operációs rendszerek:
 Windows 7/8/10
 Windows Server 2012
 
-A program használatához a .NET 4.6.1 keretrendszer szükséges, 
+A program használatához a .NET 4.8 keretrendszer szükséges, 
 mely automatikusan feltelepül (ha még nincs telepítve) a TVCStudio telepítésekor. (Internet kapcsolat szükséges)
 
 A keretrendszer az alábbi linkről kézzel is telepíthető:
 
-http://go.microsoft.com/fwlink/?LinkId=671728
+https://go.microsoft.com/fwlink/?linkid=2088631
