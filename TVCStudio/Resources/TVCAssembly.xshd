@@ -17,8 +17,8 @@
 			<End>"</End>
 		</Span>
 		<Span color="Char">
-			<Begin>'</Begin>
-			<End>'</End>
+			<Begin>(?&lt;!A|F|B|C|D|E|H|L|AF)'</Begin>
+			<End>(?&lt;!A|F|B|C|D|E|H|L|AF)'</End>
 		</Span>
 		<Keywords color="ProcessorInstructions">
 			<Word>LD</Word>
@@ -111,14 +111,6 @@
     <Rule color="Registers">\b(?=\w)E\b(?&lt;=\w)</Rule>
     <Rule color="Registers">\b(?=\w)H\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)L\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)A'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)F'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)B'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)C'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)D'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)E'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)H'\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)L'\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)IX\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)IXH\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)IXL\b(?&lt;=\w)</Rule>
@@ -130,9 +122,9 @@
 	  <Rule color="Registers">\b(?=\w)R\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)PC\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)AF\b(?&lt;=\w)</Rule>
-	  <Rule color="Registers">\b(?=\w)AF'\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)BC\b(?&lt;=\w)</Rule>
     <Rule color="Registers">\b(?=\w)DE\b(?&lt;=\w)</Rule>
 	  <Rule color="Registers">\b(?=\w)HL\b(?&lt;=\w)</Rule>
+		<Rule color="Registers">(?&lt;=A|F|B|C|D|E|H|L|AF)'</Rule>
 	</RuleSet>
 </SyntaxDefinition>

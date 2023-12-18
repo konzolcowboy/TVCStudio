@@ -46,7 +46,9 @@ namespace Z80.Kernel.Z80Assembler
                     case TokenStateMachine.Token:
                         if (char.IsLetterOrDigit(t) || ValidCharacters.Any(c => c == t) || (m_InLiteral && t.IsTvcAscii()))
                         {
-                            if (t == '\'' || t == '\"')
+                            if ((t == '\'' && 
+                                !(new[] { 'a','f','b','c','d','e','h','l'})
+                                .Contains(token.ToLower().Last())) || t == '\"')
                             {
                                 m_InLiteral = !m_InLiteral;
                             }
